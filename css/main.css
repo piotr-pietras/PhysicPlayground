@@ -1,0 +1,19 @@
+html {
+    font-size: 2vw;
+}
+/*
+@media only screen and (orientation:portrait){
+    body {
+        width: 100vh;
+        height: 100vw;
+        transform: rotate(90deg);
+        overflow: hidden;
+  }
+}
+*/
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}

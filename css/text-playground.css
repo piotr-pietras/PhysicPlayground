@@ -1,0 +1,185 @@
+/*
+LEARNING TEST STYLE
+withour using js
+*/
+@font-face {
+    font-family: "3dumb";
+    src: url(../fonts/3dumb/3Dumb.ttf);
+}
+/*
+LETTER'S KEYFRAMES
+*/
+@keyframes letter--color1 {
+    50% {
+        color: var(--clr-text-playground--1);
+        transform: scale(1.5);
+        text-shadow: 
+        0 0 20px var(--clr-text-playground--1), 
+        0 0 60px var(--clr-text-playground--1),
+        0 0 100px var(--clr-text-playground--1);
+    }
+
+    100% {
+        color: var(--clr-text-playground--1);
+        transform: scale(1);
+    }
+}
+
+@keyframes letter--color2 {
+    50% {
+        color: var(--clr-text-playground--2);
+        transform: scale(1.5);
+        text-shadow: 
+        0 0 20px var(--clr-text-playground--2), 
+        0 0 60px var(--clr-text-playground--2),
+        0 0 100px var(--clr-text-playground--2);
+    }
+
+    100% {
+        color: var(--clr-text-playground--2);
+        transform: scale(1);
+    }
+}
+
+@keyframes letter--color3 {
+    50% {
+        color: var(--clr-text-playground--3);
+        transform: scale(1.5);
+        text-shadow: 
+        0 0 20px var(--clr-text-playground--3), 
+        0 0 60px var(--clr-text-playground--3),
+        0 0 100px var(--clr-text-playground--3);
+    }
+
+    100% {
+        color: var(--clr-text-playground--3);
+        transform: scale(1);
+    }
+}
+
+@keyframes letter--color4 {
+    50% {
+        color: var(--clr-text-playground--4);
+        transform: scale(1.5);
+        text-shadow: 
+        0 0 20px var(--clr-text-playground--4), 
+        0 0 60px var(--clr-text-playground--4),
+        0 0 100px var(--clr-text-playground--4);
+    }
+
+    100% {
+        color: var(--clr-text-playground--4);
+        transform: scale(1);
+    }
+}
+
+@keyframes letter--color5 {
+    50% {
+        color: var(--clr-text-playground--5);
+        transform: scale(1.5);
+        text-shadow: 
+        0 0 20px var(--clr-text-playground--5), 
+        0 0 60px var(--clr-text-playground--5),
+        0 0 100px var(--clr-text-playground--5);
+    }
+
+    100% {
+        color: var(--clr-text-playground--5);
+        transform: scale(1);
+    }
+}
+
+.text-playground {
+    --clr-text-playground--1: rgb(235, 90, 65);
+    --clr-text-playground--2: rgb(255, 217, 0);
+    --clr-text-playground--3: rgb(145, 255, 71);
+    --clr-text-playground--4: rgb(71, 166, 255);
+    --clr-text-playground--5: rgb(255, 71, 255);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    font-family: "3dumb";
+    font-size: 5em;
+    font-weight: bold;
+
+    border: 0.1em solid gray;
+}
+
+.text-playground__word {
+    position: relative;
+    margin: 0% 0.2em;
+}
+
+.text-playground__word div {
+    display: inline-block;
+}
+/*
+WORD 1 animation
+*/
+.text-playground__word--1 div:nth-of-type(1){
+    animation: letter--color1 1s ease-out 0.5s 1 normal forwards;
+}
+
+.text-playground__word--1 div:nth-of-type(2){
+    animation: letter--color2 1s ease-out 0.6s 1 normal forwards;
+}
+
+.text-playground__word--1 div:nth-of-type(3){
+    animation: letter--color3 1s ease-out 0.7s 1 normal forwards;
+}
+
+.text-playground__word--1 div:nth-of-type(4){
+    animation: letter--color4 1s ease-out 0.8s 1 normal forwards;
+}
+
+.text-playground__word--1 div:nth-of-type(5){
+    animation: letter--color5 1s ease-out 0.9s 1 normal forwards;
+}
+
+.text-playground__word--1 div:nth-of-type(6){
+    animation: letter--color1 1s ease-out 1.0s 1 normal forwards;
+}
+/*
+WORD 2 animation
+*/
+.text-playground__word--2 div:nth-of-type(1){
+    animation: letter--color2 1s ease-out 1.1s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(2){
+    animation: letter--color3 1s ease-out 1.2s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(3){
+    animation: letter--color4 1s ease-out 1.3s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(4){
+    animation: letter--color5 1s ease-out 1.4s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(5){
+    animation: letter--color1 1s ease-out 1.5s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(6){
+    animation: letter--color2 1s ease-out 1.6s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(7){
+    animation: letter--color3 1s ease-out 1.7s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(8){
+    animation: letter--color4 1s ease-out 1.8s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(9){
+    animation: letter--color5 1s ease-out 1.9s 1 normal forwards;
+}
+
+.text-playground__word--2 div:nth-of-type(10){
+    animation: letter--color1 1s ease-out 2.0s 1 normal forwards;
+}
