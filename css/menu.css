@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 3dumb;
+    src: url(../fonts/3dumb/3Dumb.ttf);
+}
+
+@keyframes show-menu {
+    0% {
+
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes shake-option {
+    0% {
+
+    }
+
+    50% {
+        transform: rotateZ(3deg);
+    }
+
+    100% {
+        transform: rotateZ(-3deg);
+    }
+}
+
+.menu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1;
+    overflow: hidden;
+
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+
+    animation: show-menu 1s ease-out 3s 1 alternate forwards;
+}
+
+.menu__option {
+    width: 20%;
+    height: 20%;
+    margin: 3%;
+
+    border-radius: 10%;
+
+    background-image: url("../img/under-construction.png");
+    background-size: 100% 100%;
+    
+    opacity: 0.5;
+    transition: 0.4s;
+}    
+
+
+#menu__option--1{
+    animation: shake-option 0.1s none 4s 4 normal;
+}
+
+#menu__option--2{
+    animation: shake-option 0.1s none 4.2s 4 normal;
+}
+
+#menu__option--3{
+    animation: shake-option 0.1s none 4.3s 4 normal;
+}
+
+#menu__option--4{
+    animation: shake-option 0.1s none 4.4s 4 normal;
+}
+
+#menu__option--5{
+    animation: shake-option 0.1s none 4.5s 4 normal;
+}
+
+.menu__option:hover {
+    margin: 5%;
+    border: 0.1em solid rgba(0, 0, 0, 1);
+    cursor: pointer;
+    transform: scale(1.25) rotateZ(15deg);
+    opacity: 0.9;
+    transition: 0.4s;
+}
+
+#menu__option--1:hover{
+    box-shadow: 
+    0px 0px 100px 100px rgba(0, 0, 255, 0.6), 
+    0px 0px 20px 10px rgba(0, 0, 0, 0.6),
+    0px 0px 20px 10px rgba(0, 0, 0, 0.6) inset;
+}
+
+#menu__option--2:hover{
+    box-shadow: 0px 0px 100px 100px rgba(0, 128, 0, 0.6),
+    0px 0px 20px 10px rgba(0, 0, 0, 0.6),
+    0px 0px 20px 10px rgba(0, 0, 0, 0.6) inset;
+}
+
+#menu__option--3:hover{
+    box-shadow: 0px 0px 100px 100px rgba(255, 0, 0, 0.6),
+    0px 0px 20px 10px rgba(0, 0, 0, 0.6),
+    0px 0px 10px 10px rgba(0, 0, 0, 0.6) inset;
+}
+
+#menu__option--4:hover{
+    box-shadow: 0px 0px 100px 100px rgba(255, 255, 0, 0.6),
+    0px 0px 20px 10px rgba(0, 0, 0, 0.6),
+    0px 0px 10px 10px rgba(0, 0, 0, 0.6) inset;
+}
+
+#menu__option--5:hover{
+    box-shadow: 0px 0px 100px 100px rgba(128, 0, 128, 0.6),
+    0px 0px 20px 10px rgba(0, 0, 0, 0.6),
+    0px 0px 10px 10px rgba(0, 0, 0, 0.6) inset;
+}
+
+.menu__option:hover::after {
+    position: relative;
+    content: attr(data-tooltip);
+
+    width: 100%;
+    padding: 2%;
+
+    text-align: center;
+    text-shadow: 0 0 20px white;
+    font-family: "3dumb";
+    font-weight: bold;
+
+    top: 100%;
+}

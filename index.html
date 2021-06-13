@@ -3,20 +3,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>PLAYGROUND TEXT</title>
+    <title>Physic Playground</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/text-playground.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <script src="js/test.js"></script>
 </head>
 
 <body>
-    <div class="text-playground"> 
-        <div class="text-playground__word text-playground__word--1">
-            <div>P</div><div>H</div><div>Y</div><div>S</div><div>I</div><div>C</div>
+ 
+    <div class="background">
+        <div class="text-playground"> 
+            <div class="text-playground__word" id="text-playground__word--1">
+                <div>P</div><div>H</div><div>Y</div><div>S</div><div>I</div><div>C</div>
+            </div>
+            <div class="text-playground__word" id="text-playground__word--2">
+                <div>P</div><div>L</div><div>A</div><div>Y</div><div>G</div><div>R</div><div>O</div><div>U</div><div>N</div><div>D</div>     
+            </div>
         </div>
-        <div class="text-playground__word text-playground__word--2">
-            <div>P</div><div>L</div><div>A</div><div>Y</div><div>G</div><div>R</div><div>O</div><div>U</div><div>N</div><div>D</div>     
-        </div>
-    </div>    
-    <div class="button__start"></div>
+    </div>
+
+    <div class="menu">
+        <div class="menu__option" id="menu__option--1" data-tooltip="little balls falling all around"></div>        
+        <div class="menu__option" id="menu__option--2" data-tooltip="under construction"></div>      
+        <div class="menu__option" id="menu__option--3" data-tooltip="under construction"></div>        
+        <div class="menu__option" id="menu__option--4" data-tooltip="under construction"></div>  
+        <div class="menu__option" id="menu__option--5" data-tooltip="under construction"></div> 
+    </div>
+
+
 </body>
 </html>
