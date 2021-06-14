@@ -1,0 +1,6 @@
+.simplePhysic__scene {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    border: 2px solid black;
+}

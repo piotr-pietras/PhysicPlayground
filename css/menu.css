@@ -81,6 +81,21 @@
     animation: shake-option 0.1s none 4.5s 4 normal;
 }
 
+.menu__option:hover::after {
+    position: relative;
+    content: attr(data-tooltip);
+
+    width: 100%;
+    padding: 2%;
+
+    text-align: center;
+    text-shadow: 0 0 20px white;
+    font-family: "3dumb";
+    font-weight: bold;
+
+    top: 100%;
+}
+
 .menu__option:hover {
     margin: 5%;
     border: 0.1em solid rgba(0, 0, 0, 1);
@@ -119,19 +134,4 @@
     box-shadow: 0px 0px 100px 100px rgba(128, 0, 128, 0.6),
     0px 0px 20px 10px rgba(0, 0, 0, 0.6),
     0px 0px 10px 10px rgba(0, 0, 0, 0.6) inset;
-}
-
-.menu__option:hover::after {
-    position: relative;
-    content: attr(data-tooltip);
-
-    width: 100%;
-    padding: 2%;
-
-    text-align: center;
-    text-shadow: 0 0 20px white;
-    font-family: "3dumb";
-    font-weight: bold;
-
-    top: 100%;
 }
