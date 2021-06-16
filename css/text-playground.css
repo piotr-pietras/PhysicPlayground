@@ -103,6 +103,8 @@ LETTER'S KEYFRAMES
     font-family: "3dumb";
     font-size: 5em;
     font-weight: bold;
+
+    user-select: none;
 }
 
 .text-playground__word {

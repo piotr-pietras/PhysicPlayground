@@ -4,26 +4,11 @@
 }
 
 @keyframes show-menu {
-    0% {
-
-    }
+    0% {visibility: visible;}
 
     100% {
         opacity: 1;
-    }
-}
-
-@keyframes shake-option {
-    0% {
-
-    }
-
-    50% {
-        transform: rotateZ(3deg);
-    }
-
-    100% {
-        transform: rotateZ(-3deg);
+        visibility: visible;
     }
 }
 
@@ -38,6 +23,7 @@
     justify-content: center;
 
     z-index: 1;
+    visibility: hidden;
     overflow: hidden;
 
     background-color: rgba(0, 0, 0, 0.9);
@@ -46,55 +32,39 @@
     animation: show-menu 1s ease-out 3s 1 alternate forwards;
 }
 
+.menu__tooltip {
+    position: absolute;
+    max-width: 35%;
+
+    color: black;
+    font-family: "3dumb";
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    text-shadow:
+        0 0 10px white,
+        0 0 30px white;
+
+    
+    z-index: 2;
+    user-select: none;
+
+    opacity: 0;
+    transition: opacity 1s;
+}
+
 .menu__option {
     width: 20%;
     height: 20%;
     margin: 3%;
 
     border-radius: 10%;
-
-    background-image: url("../img/under-construction.png");
+    background-color: black;
     background-size: 100% 100%;
     
     opacity: 0.5;
-    transition: 0.4s;
+    transition: 0.5s;
 }    
-
-
-#menu__option--1{
-    animation: shake-option 0.1s none 4s 4 normal;
-}
-
-#menu__option--2{
-    animation: shake-option 0.1s none 4.2s 4 normal;
-}
-
-#menu__option--3{
-    animation: shake-option 0.1s none 4.3s 4 normal;
-}
-
-#menu__option--4{
-    animation: shake-option 0.1s none 4.4s 4 normal;
-}
-
-#menu__option--5{
-    animation: shake-option 0.1s none 4.5s 4 normal;
-}
-
-.menu__option:hover::after {
-    position: relative;
-    content: attr(data-tooltip);
-
-    width: 100%;
-    padding: 2%;
-
-    text-align: center;
-    text-shadow: 0 0 20px white;
-    font-family: "3dumb";
-    font-weight: bold;
-
-    top: 100%;
-}
 
 .menu__option:hover {
     margin: 5%;
@@ -102,7 +72,7 @@
     cursor: pointer;
     transform: scale(1.25) rotateZ(15deg);
     opacity: 0.9;
-    transition: 0.4s;
+    transition: 1s;
 }
 
 #menu__option--1:hover{
