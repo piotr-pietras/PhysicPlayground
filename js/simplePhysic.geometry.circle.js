@@ -1,4 +1,6 @@
-class Circle {
+let simplePhysic = {};
+
+simplePhysic.circle = class Circle {
     scene; element;
     properties = {
         class : "physic__circle",
@@ -9,12 +11,12 @@ class Circle {
         color : "red"
     };
     physic = {
-        vX : 1, //velovity x [px/s]
-        vY : 1  //velocity y [px/s]
+        vX : 0, //velovity x [px/s]
+        vY : 0  //velocity y [px/s]
     };
 
-    constructor(scene, width, x, y) {
-        this.scene = scene;
+    constructor(width, x, y) {
+        this.scene = simplePhysic.scene;
         this.properties.width = width;
         this.properties.height = width;
         this.addCSS();
@@ -49,8 +51,8 @@ class Circle {
     }
 
     move() {
-        let x = this.properties.x + this.physic.vX * refreshPeriod * 0.001;
-        let y = this.properties.y + this.physic.vY * refreshPeriod * 0.001;
+        let x = this.properties.x + this.physic.vX * simplePhysic.refreshPeriod * 0.001;
+        let y = this.properties.y + this.physic.vY * simplePhysic.refreshPeriod * 0.001;
         this.setPosition(x, y);
     }
     
@@ -58,5 +60,5 @@ class Circle {
     /** @type {HTMLDivElement}  */
     let scene1 = null;
     //let circ = new Circle(document.querySelector(".scene"), 50, 50, 50);
-    
+
     

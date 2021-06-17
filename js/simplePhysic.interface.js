@@ -1,14 +1,10 @@
-let scene = document.querySelector(".simplePhysic__scene");
-let worker;
-let elements = [];
 
-addCircle();
-start();
+simplePhysic.scene = document.querySelector("#scene__simplePhysic");
+simplePhysic.elements = [];
 
-function addCircle() {
-   elements.push(new Circle(scene, 50, 0, 0));
-   elements.push(new Circle(scene, 50, 50, 50));
-   elements.push(new Circle(scene, 50, 100, 100));
-
-   console.log(elements);
+simplePhysic.addCircle = function() {
+   this.elements.push(new this.circle(50, 0, 0));
 }
+
+simplePhysic.addCircle();
+simplePhysic.simulate();

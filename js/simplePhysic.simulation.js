@@ -1,14 +1,20 @@
-let refreshPeriod = 40; //[ms]
+simplePhysic.refreshPeriod = 40; //[ms]
 
-function simulate() {
+simplePhysic.simulate = function() {
     console.log("simulating...");
-    
-    for(let i in elements) {
-        for(let effect of activeEffects){
-            effect(elements[i]);
+
+    for(let i in this.elements) {
+        for(let affect of this.activeEffects){
+            console.log(affect);
+            /*TO REPAIR*/
+            if(affect in this){
+                console.log("in");
+                affect(this.elements[i]);
+            }
+            /*this.effectOfGravity(this.elements[i]);*/
         }
-        elements[i].move();
+        this.elements[i].move();
     }
 
-    setTimeout(() => {simulate()}, refreshPeriod);
- }
+    setTimeout(() => {this.simulate()}, this.refreshPeriod);
+};
