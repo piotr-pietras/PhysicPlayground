@@ -1,9 +1,7 @@
-simplePhysic.g = 9.80665 * 50; //[px/s^2]
+simplePhysic.G = 9.80665; //[px/s^2]
 simplePhysic.effectOfGravity = function(element) {
-    element.physic.vY += 
-    this.g * simplePhysic.refreshPeriod * 0.001;
+    element.physic.vY += simplePhysic.G * simplePhysic.REFRESH_PERIOD * 0.001;
 }
 
 simplePhysic.activeEffects = [];
-simplePhysic.activeEffects.push("effectOfGravity");
-
+simplePhysic.activeEffects.push(simplePhysic.effectOfGravity);

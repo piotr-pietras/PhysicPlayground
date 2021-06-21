@@ -1,4 +1,3 @@
-
 simplePhysic.scene = document.querySelector("#scene__simplePhysic");
 simplePhysic.elements = [];
 

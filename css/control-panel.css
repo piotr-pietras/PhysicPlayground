@@ -1,0 +1,67 @@
+@keyframes back {
+    0% {}
+
+    100% {
+        transform: translateX(-20%);
+    }
+}
+
+@keyframes restart {
+    0% {}
+
+    100% {
+        transform: rotateZ(500deg);
+    }
+}
+
+.control-panel {
+    position: absolute;
+    height: 10%;
+    bottom: -10%;
+    left: 5%;
+    right: 5%;
+
+    display: flex;
+
+    z-index: 5;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid grey;
+    border-radius: 5px;
+
+    box-shadow: 
+    0 0 25px rgb(255, 255, 255),
+    0 0 5px grey inset;
+
+    transition: 1s;
+}
+
+[id^="control-panel"] {
+    width: 8%;
+    height: auto;
+    margin: 0% 2%;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+[id^="control-panel"]:hover {
+    cursor: pointer;
+}
+
+#control-panel__back {
+    background-image: url("../img/back.png");
+}
+
+#control-panel__back:hover {
+    animation: back 0.25s ease-in-out 0s infinite alternate backwards;
+}
+
+#control-panel__restart {
+    background-image: url("../img/restart.png");
+}
+
+#control-panel__restart:hover {
+    animation: restart 0.75s ease-in-out 0s infinite alternate backwards;
+}

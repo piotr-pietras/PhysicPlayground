@@ -51,8 +51,8 @@ simplePhysic.circle = class Circle {
     }
 
     move() {
-        let x = this.properties.x + this.physic.vX * simplePhysic.refreshPeriod * 0.001;
-        let y = this.properties.y + this.physic.vY * simplePhysic.refreshPeriod * 0.001;
+        let x = this.properties.x + this.physic.vX * simplePhysic.REFRESH_PERIOD * 0.001;
+        let y = this.properties.y + this.physic.vY * simplePhysic.REFRESH_PERIOD * 0.001;
         this.setPosition(x, y);
     }
     
