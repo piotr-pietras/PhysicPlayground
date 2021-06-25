@@ -99,17 +99,15 @@ LETTER'S KEYFRAMES
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: center;
 
     font-family: "3dumb";
     font-size: 5em;
     font-weight: bold;
-
-    user-select: none;
 }
 
 .text-playground__word {
     position: relative;
-    margin: 0% 0.2em;
 }
 
 .text-playground__word div {

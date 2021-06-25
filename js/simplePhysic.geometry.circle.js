@@ -22,6 +22,7 @@ simplePhysic.circle = class Circle {
         this.addCSS();
         this.styleCSS();
         this.setPosition(x, y);
+        console.log(this.physic.vY);
     }
 
     addCSS(){
@@ -57,8 +58,3 @@ simplePhysic.circle = class Circle {
     }
     
 };
-    /** @type {HTMLDivElement}  */
-    let scene1 = null;
-    //let circ = new Circle(document.querySelector(".scene"), 50, 50, 50);
-
-    

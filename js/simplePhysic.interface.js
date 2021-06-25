@@ -1,9 +1,6 @@
 simplePhysic.scene = document.querySelector("#scene__simplePhysic");
 simplePhysic.elements = [];
 
-simplePhysic.addCircle = function() {
-   this.elements.push(new this.circle(50, 0, 0));
+simplePhysic.addCircle = function(diameter, x , y) {
+   this.elements.push(new this.circle(diameter, x, y));
 }
-
-simplePhysic.addCircle();
-simplePhysic.simulate();

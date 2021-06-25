@@ -1,9 +1,12 @@
 function showScene() {
     console.log("show scene");
-    $(".scene, #scene__simplePhysic").css("visibility", "visible");
+    $(".scene").css({
+        transform: "translateY(100%)"});
 }
 
 function hideScene() {
     console.log("hide scene");
-    $(".scene, #scene__simplePhysic").css("visibility", "hidden");
+    $(".scene").css({
+        transform: "translateY(-100%)"});
 }
+

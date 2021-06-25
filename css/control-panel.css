@@ -17,7 +17,7 @@
 .control-panel {
     position: absolute;
     height: 10%;
-    bottom: -10%;
+    top: 100%;
     left: 5%;
     right: 5%;
 
@@ -26,12 +26,8 @@
     z-index: 5;
 
     background-color: rgba(255, 255, 255, 0.8);
-    border: 2px solid grey;
-    border-radius: 5px;
-
-    box-shadow: 
-    0 0 25px rgb(255, 255, 255),
-    0 0 5px grey inset;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 10px;
 
     transition: 1s;
 }
@@ -57,7 +53,7 @@
 #control-panel__back:hover {
     animation: back 0.25s ease-in-out 0s infinite alternate backwards;
 }
-
+/*
 #control-panel__restart {
     background-image: url("../img/restart.png");
 }
@@ -65,3 +61,4 @@
 #control-panel__restart:hover {
     animation: restart 0.75s ease-in-out 0s infinite alternate backwards;
 }
+*/
