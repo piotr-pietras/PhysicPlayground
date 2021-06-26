@@ -25,5 +25,10 @@ $(document).ready(function () {
         console.log("chapter 1 choosen")
         chapter1Load();
     });
+
+    $("#menu__option--2").click(function (e) { 
+        console.log("chapter 2 choosen")
+        chapter2Load();
+    });
 });
 

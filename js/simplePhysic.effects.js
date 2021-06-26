@@ -4,4 +4,3 @@ simplePhysic.effectOfGravity = function(element) {
 }
 
 simplePhysic.activeEffects = [];
-simplePhysic.activeEffects.push(simplePhysic.effectOfGravity);

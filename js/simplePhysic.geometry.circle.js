@@ -1,9 +1,7 @@
-let simplePhysic = {};
-
 simplePhysic.circle = class Circle {
     scene; element;
     properties = {
-        class : "physic__circle",
+        //class : "physic__circle",
         x : 0, //postion x [px]
         y : 0, //postion y [px]
         width : 10, //[px]
@@ -15,19 +13,19 @@ simplePhysic.circle = class Circle {
         vY : 0  //velocity y [px/s]
     };
 
-    constructor(width, x, y) {
+    constructor(width, x, y, color) {
         this.scene = simplePhysic.scene;
         this.properties.width = width;
         this.properties.height = width;
+        this.properties.color = color;
         this.addCSS();
         this.styleCSS();
         this.setPosition(x, y);
-        console.log(this.physic.vY);
     }
 
     addCSS(){
         this.element = document.createElement("div");
-        this.element.className = this.properties.class;
+        //this.element.className = this.properties.class;
         this.element.style.position = "absolute";
         this.scene.appendChild(this.element);
     }
@@ -39,8 +37,9 @@ simplePhysic.circle = class Circle {
     styleCSS() {
         this.element.style.width = this.properties.width + "px";
         this.element.style.height = this.properties.height + "px";
-        this.element.style.backgroundColor = this.properties.color;
-        this.element.style.borderRadius = "25px";
+        this.element.style.borderRadius = this.properties.width/2 + "px";
+        this.element.style.backgroundColor =  this.properties.color;
+        this.element.style.background = "linear-gradient(to right," + this.properties.color + " 0%,  #b7d5de 100%)"
     }
 
     setPosition(x, y) {

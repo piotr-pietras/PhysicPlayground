@@ -4,11 +4,17 @@ simplePhysic.simulateInterval = null;
 simplePhysic.simulate = function() {
     clearInterval(this.simulateInterval);
     this.simulateInterval = setInterval(() => {
-        for(let i in this.elements) {
+        for(let element of this.elements) {
+            //Apply effect
             for(let affect of this.activeEffects) {
-                affect(this.elements[i]);
+                affect(element);
             }
-            this.elements[i].move();
+            //Check for collision
+            for(let element2 of this.elements) {
+                if(element == element2) continue;
+                this.collision(element, element2); 
+            }
+            element.move();
         }
     }, this.refreshPeriod);
 };

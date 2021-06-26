@@ -12,10 +12,9 @@
 }
 
 #scene__simplePhysic {
-    position: relative;
     height: 85%;
     width: auto;
-    margin: 0 5%;
+    margin: 0 0%;
 
     left: 0%;
     right: 0%;
@@ -24,6 +23,6 @@
     overflow: hidden;
 
     background-color: rgba(255, 255, 255, 0.8);
-    border: 3px solid rgb(0, 0, 0);
+    /*border: 3px solid rgb(0, 0, 0);*/
     border-radius: 10px;
 }

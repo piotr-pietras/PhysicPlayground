@@ -14,6 +14,7 @@ $(document).ready(function () {
     $("#control-panel__back").click(function (e) { 
         hideControlPanel();
         hideScene();
+        simplePhysic.clearAll();
     });
 });
 
