@@ -1,4 +1,3 @@
-simplePhysic.colorizeCollide = true;
 simplePhysic.objectCollision = function (element, element2) { 
     let centerVector1 = element.getCenterVector();
     let centerVector2 = element2.getCenterVector();
@@ -7,9 +6,9 @@ simplePhysic.objectCollision = function (element, element2) {
     
     //Collide
     if(distance <= triggerDistnace) {
-        //console.log("collide");
+        console.log("collide");
         //Colorize collide
-        if(this.colorizeCollide) {
+        if(this.colorizeCollision) {
             if(!element.properties.highlighted) element.highlightCSS();
             if(!element2.properties.highlighted) element2.highlightCSS();
         } 

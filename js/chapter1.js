@@ -3,7 +3,9 @@ ballColors = [
 ];
 
 function chapter1Load() {
+    simplePhysic.clearAll();
     $("#scene__simplePhysic").unbind()
+
     $("#scene__simplePhysic").click(function (e) { 
         e.preventDefault();
         //POSTITON X is not corrent due to scene width
@@ -13,6 +15,8 @@ function chapter1Load() {
             );
     });
 
+    simplePhysic.checkObjectCollision = false;
+    simplePhysic.checkFrameCollision = false;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity);
     simplePhysic.simulate();
    

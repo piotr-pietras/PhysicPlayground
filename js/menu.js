@@ -1,3 +1,5 @@
+currentlyLoadedChapter = undefined;
+
 $(document).ready(function () {
 
     $("[id^='menu__option']").mousemove(function (e) { 
@@ -15,7 +17,6 @@ $(document).ready(function () {
         });
     });
 
-
     $("[id^='menu__option']").click(function () { 
         showScene();
         showControlPanel();
@@ -24,11 +25,19 @@ $(document).ready(function () {
     $("#menu__option--1").click(function (e) { 
         console.log("chapter 1 choosen")
         chapter1Load();
+        currentlyLoadedChapter = chapter1Load;
     });
 
     $("#menu__option--2").click(function (e) { 
         console.log("chapter 2 choosen")
         chapter2Load();
+        currentlyLoadedChapter = chapter2Load;
+    });
+
+    $("#menu__option--3").click(function (e) { 
+        console.log("chapter 3 choosen")
+        chapter3Load();
+        currentlyLoadedChapter = chapter3Load;
     });
 });
 

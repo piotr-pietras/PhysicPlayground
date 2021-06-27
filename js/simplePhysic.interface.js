@@ -12,5 +12,5 @@ simplePhysic.clearAll = function () {
       this.elements[i].removeCSS();
    }
    this.elements = [];
+   this.activeEffects = []
 }
-

@@ -16,7 +16,13 @@ $(document).ready(function () {
         hideScene();
         simplePhysic.clearAll();
     });
+
+    $("#control-panel__restart").click(function (e) { 
+        currentlyLoadedChapter();
+    });
 });
+
+
 
 
 
