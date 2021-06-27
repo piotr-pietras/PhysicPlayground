@@ -1,21 +1,19 @@
 function chapter2Load() {
     $("#scene__simplePhysic").unbind();
-    /*$("#scene__simplePhysic").click(function (e) { 
-        e.preventDefault();
-    });*/
 
     simplePhysic.addCircle(100, 100, 50, "black");
     simplePhysic.addCircle(150, 300, 100, "black");
-    /*simplePhysic.addCircle(50, 200, 200, "black");*/
+    simplePhysic.addCircle(50, 200, 200, "black");
+    simplePhysic.addCircle(25, 350, 25, "black");
 
     let drag = undefined;
     for(let i of simplePhysic.elements) {
-        $(i.element).mouseenter(function (e) { 
-            $((i.element)).css({cursor: "move"});
+        $(i.elementHTML).mouseenter(function (e) { 
+            $((i.elementHTML)).css({cursor: "move"});
         });
-        $(i.element).click(function (e) { 
+        $(i.elementHTML).click(function (e) { 
             if(!drag) {
-                drag = i.element; 
+                drag = i.elementHTML; 
                 drag.style.zIndex = "1";
             }
             else {
@@ -25,7 +23,7 @@ function chapter2Load() {
 
         });      
         $(simplePhysic.scene).mousemove(function (e) { 
-            if(drag == i.element) i.setPosition(
+            if(drag == i.elementHTML) i.setPosition(
                 e.clientX - i.properties.width/2, 
                 e.clientY - i.properties.width/2);
         });        

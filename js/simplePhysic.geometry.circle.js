@@ -1,16 +1,16 @@
 simplePhysic.circle = class Circle {
-    scene; element;
+    scene; elementHTML;
     properties = {
         //class : "physic__circle",
         x : 0, //postion x [px]
         y : 0, //postion y [px]
         width : 10, //[px]
         height : 10, //[px]
-        color : "red"
+        color : "red",
+        highlighted : false
     };
     physic = {
-        vX : 0, //velovity x [px/s]
-        vY : 0  //velocity y [px/s]
+        v : new simplePhysic.vector(0, 0, 0), //velovity [px/s]
     };
 
     constructor(width, x, y, color) {
@@ -24,36 +24,62 @@ simplePhysic.circle = class Circle {
     }
 
     addCSS(){
-        this.element = document.createElement("div");
+        this.elementHTML = document.createElement("div");
         //this.element.className = this.properties.class;
-        this.element.style.position = "absolute";
-        this.scene.appendChild(this.element);
+        this.elementHTML.style.position = "absolute";
+        this.scene.appendChild(this.elementHTML);
     }
 
     removeCSS() {
-        this.element.remove();
+        this.elementHTML.remove();
     }
 
     styleCSS() {
-        this.element.style.width = this.properties.width + "px";
-        this.element.style.height = this.properties.height + "px";
-        this.element.style.borderRadius = this.properties.width/2 + "px";
-        this.element.style.backgroundColor =  this.properties.color;
-        this.element.style.background = "linear-gradient(to right," + this.properties.color + " 0%,  #b7d5de 100%)"
+        this.elementHTML.style.width = this.properties.width + "px";
+        this.elementHTML.style.height = this.properties.height + "px";
+        this.elementHTML.style.borderRadius = this.properties.width/2 + "px";
+        this.elementHTML.style.backgroundColor =  this.properties.color;
+        this.elementHTML.style.background = "linear-gradient(to right," + this.properties.color + " 0%,  #b7d5de 100%)";
+    }
+
+    highlightCSS() {
+        if(!this.properties.highlighted) {
+            this.properties.highlighted = true;
+            //this.elementHTML.style.background = "none";
+            //this.elementHTML.style.backgroundColor = "red";
+            this.elementHTML.style.boxShadow = "0 0 "+ this.properties.width + "px " + this.properties.width/10 + "px red";
+        }   
+        else {
+            this.properties.highlighted = false;
+            this.elementHTML.style.boxShadow = "none";
+            this.elementHTML.style.backgroundColor =  this.properties.color;
+            this.elementHTML.style.background = "linear-gradient(to right," + this.properties.color + " 0%,  #b7d5de 100%)";
+        }
     }
 
     setPosition(x, y) {
         this.properties.x = x;
         this.properties.y = y;
-        this.element.style.transform = "translate(" 
+        this.elementHTML.style.transform = "translate(" 
         + this.properties.x + "px,"
         + this.properties.y + "px)";
     }
 
     move() {
-        let x = this.properties.x + this.physic.vX * simplePhysic.REFRESH_PERIOD * 0.001;
-        let y = this.properties.y + this.physic.vY * simplePhysic.REFRESH_PERIOD * 0.001;
+        let x = this.properties.x + this.physic.v.x * simplePhysic.REFRESH_PERIOD * 0.001;
+        let y = this.properties.y + this.physic.v.y * simplePhysic.REFRESH_PERIOD * 0.001;
         this.setPosition(x, y);
     }
     
+    getPositionVector() {
+        return(new simplePhysic.vector(this.properties.x, this.properties.y, 0));
+    }
+
+    getCenterVector() {
+        return(new simplePhysic.vector(
+            this.properties.x + this.properties.width/2,
+            this.properties.y + this.properties.height/2,
+            0
+        ))
+    }
 };

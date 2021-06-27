@@ -1,12 +1,25 @@
-simplePhysic.checkCollision = false;
-simplePhysic.collision = function (element, element2) { 
-    let xC = element.properties.x - element.properties.width/2;
-    let yC = element.properties.y - element.properties.width/2;
-    let xC2 = element2.properties.x - element2.properties.width/2;
-    let yC2 = element2.properties.y - element2.properties.width/2;
+simplePhysic.colorizeCollide = true;
+simplePhysic.objectCollision = function (element, element2) { 
+    let centerVector1 = element.getCenterVector();
+    let centerVector2 = element2.getCenterVector();
     let triggerDistnace = element.properties.width/2 + element2.properties.width/2;
-    let distance = Math.sqrt(Math.pow(xC2 - xC, 2) + Math.pow(yC2 - yC, 2));
+    let distance = this.vector.vectorDistance(centerVector1, centerVector2);
     
-    if(distance <= triggerDistnace) {console.log("collide");return true};
+    //Collide
+    if(distance <= triggerDistnace) {
+        //console.log("collide");
+        //Colorize collide
+        if(this.colorizeCollide) {
+            if(!element.properties.highlighted) element.highlightCSS();
+            if(!element2.properties.highlighted) element2.highlightCSS();
+        } 
+        return true;
+    }
     return false;
+}
+
+simplePhysic.frameCollision = function (element) {
+    let centerVector1 = element.getCenterVector();
+    x = simplePhysic.scene.width;
+    y = simplePhysic.scene.height;
 }

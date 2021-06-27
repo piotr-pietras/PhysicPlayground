@@ -1,20 +1,23 @@
 simplePhysic.REFRESH_PERIOD = 40; //[ms]
 simplePhysic.simulateInterval = null;
+simplePhysic.checkCollision = true;
 
 simplePhysic.simulate = function() {
     clearInterval(this.simulateInterval);
     this.simulateInterval = setInterval(() => {
-        for(let element of this.elements) {
+        for(let i = 0; i < this.elements.length; i++) {
             //Apply effect
             for(let affect of this.activeEffects) {
-                affect(element);
+                affect(this.elements[i]);
             }
             //Check for collision
-            for(let element2 of this.elements) {
-                if(element == element2) continue;
-                this.collision(element, element2); 
+            if(this.checkCollision) {
+                for(let j = i + 1; j < this.elements.length ; j++) {
+                    if(this.elements[i] == this.elements[j]) continue;
+                    this.objectCollision(this.elements[i], this.elements[j]); 
+                }
             }
-            element.move();
+            this.elements[i].move();
         }
     }, this.refreshPeriod);
 };
