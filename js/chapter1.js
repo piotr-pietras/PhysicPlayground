@@ -14,7 +14,7 @@ function chapter1Load() {
             ballColors[Math.floor(Math.random() * ballColors.length)]
             );
     });
-
+    
     simplePhysic.checkObjectCollision = false;
     simplePhysic.checkFrameCollision = false;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity);

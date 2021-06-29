@@ -1,12 +1,11 @@
-simplePhysic.objectCollision = function (element, element2) { 
+simplePhysic.detectObjectCollision = function (element, element2) { 
     let centerVector1 = element.getCenterVector();
     let centerVector2 = element2.getCenterVector();
     let triggerDistnace = element.properties.width/2 + element2.properties.width/2;
-    let distance = this.vector.vectorDistance(centerVector1, centerVector2);
+    let distance = this.vector.distance(centerVector1, centerVector2);
     
     //Collide
     if(distance <= triggerDistnace) {
-        console.log("collide");
         //Colorize collide
         if(this.colorizeCollision) {
             if(!element.properties.highlighted) element.highlightCSS();
@@ -17,8 +16,31 @@ simplePhysic.objectCollision = function (element, element2) {
     return false;
 }
 
-simplePhysic.frameCollision = function (element) {
-    let centerVector1 = element.getCenterVector();
-    x = simplePhysic.scene.width;
-    y = simplePhysic.scene.height;
+simplePhysic.detectFrameCollision = function (element) {
+    let centerVector = element.getCenterVector();
+
+    //Collide
+    if(centerVector.x - element.properties.width/2 < 0 
+    || centerVector.x + element.properties.width/2 > this.scene.clientWidth
+    || centerVector.y - element.properties.height/2 < 0 
+    || centerVector.y + element.properties.height/2 > this.scene.clientHeight) {
+        //Colorize collide
+        if(this.colorizeCollision) {
+            if(!element.properties.highlighted) element.highlightCSS();
+        }    
+        return true;
+    }   
+    return false;
+}
+
+simplePhysic.affectFrameCollision = function (element) {
+    //Vertical obstacle
+    if(centerVector.x - element.properties.width/2 < 0 
+    || centerVector.x + element.properties.width/2 > this.scene.clientWidth) {
+
+    }
+    //Horizontal obstacle
+    else {
+
+    }
 }

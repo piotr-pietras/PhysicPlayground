@@ -8,6 +8,7 @@ function chapter3Load() {
 
     simplePhysic.colorizeCollision = true;
     simplePhysic.checkObjectCollision = false;
+    simplePhysic.checkFrameCollision = true;
     simplePhysic.activeEffects = [];
     simplePhysic.simulate();
 }
