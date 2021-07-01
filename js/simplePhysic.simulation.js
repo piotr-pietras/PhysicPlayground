@@ -22,7 +22,8 @@ simplePhysic.simulate = function() {
             if(this.checkObjectCollision) {
                 for(let j = i + 1; j < this.elements.length ; j++) {
                     if(this.elements[i] == this.elements[j]) continue;
-                    this.detectObjectCollision(this.elements[i], this.elements[j]); 
+                    if(this.detectObjectCollision(this.elements[i], this.elements[j]))
+                        this.affectObjectCollision(this.elements[i], this.elements[j]); 
                 }
             }
             this.elements[i].move();

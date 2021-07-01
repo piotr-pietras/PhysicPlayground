@@ -11,6 +11,7 @@ simplePhysic.circle = class Circle {
     };
     physic = {
         v : new simplePhysic.vector(0, 0, 0), //velovity [px/s]
+        mase : 0
     };
 
     constructor(width, x, y, color) {

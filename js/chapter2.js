@@ -10,12 +10,16 @@ function chapter2Load() {
     simplePhysic.addCircle(50, 50, 350, "black");
     simplePhysic.addCircle(25, 350, 25, "black");
     simplePhysic.addCircle(100, 400, 300, "black");
+    simplePhysic.addCircle(50, 200, 500, "black");
+    simplePhysic.addCircle(75, 150, 555, "black");
+    simplePhysic.addCircle(50, 50, 550, "black");
+    simplePhysic.addCircle(25, 350, 555, "black");
 
     addDragToAllElements(simplePhysic.elements);
 
     simplePhysic.colorizeCollision = true;
     simplePhysic.checkObjectCollision = true;
-    simplePhysic.checkFrameCollision = false;
+    simplePhysic.checkFrameCollision = true;
     simplePhysic.activeEffects = [];
     simplePhysic.simulate();
     console.log("chapter 2 loaded");

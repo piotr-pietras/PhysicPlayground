@@ -37,14 +37,19 @@ simplePhysic.vector = class Vector {
             Math.pow(vector2.z - vector1.z, 2)))
     }
 
-    static length(vector) {
-
+    static magnitude(vector) {
+        return(Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2) + Math.pow(vector.z, 2)))
+    }
+    
+    static unit(vector) {
+        let mag = this.magnitude(vector);
+        return new Vector(vector.x / mag, vector.y / mag, vector.z / mag);
     }
 
     static cross(vector1, vector2) {
         return new Vector(
             vector1.y * vector2.z - vector1.z * vector2.y,
-            vector1.x * vector2.z - vector1.z * vector2.x,
+            vector1.z * vector2.x - vector1.x * vector2.z,
             vector1.x * vector2.y - vector1.y * vector2.x
         )
     }
@@ -53,12 +58,10 @@ simplePhysic.vector = class Vector {
         return vector1.x * vector2.x + vector1.y * vector2.y + vector1.z * vector2.z;
     }
 
-    //Method return array of vectors [vector , parall vector]
-    static subdivide(vector, normal) {
-        let vector1 = this.multiply(vector, this.dot(vector, normal)); 
-        let vector2 = this.cross(this.contrary(normal), this.cross(normal, vector));
-        //let vector2 = this.substract(vector, vector1);
+    //Method return array of vectors [normal vector , parall vector]
+    static subdivide(vector, unitNormal) {
+        let vector1 = this.multiply(unitNormal, this.dot(vector, unitNormal)); 
+        let vector2 = this.substract(vector, vector1);
         return [vector1, vector2];
-        //return vector1;
     }
 }
