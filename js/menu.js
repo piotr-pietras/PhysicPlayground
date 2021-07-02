@@ -39,5 +39,11 @@ $(document).ready(function () {
         chapter3Load();
         currentlyLoadedChapter = chapter3Load;
     });
+
+    $("#menu__option--4").click(function (e) { 
+        console.log("chapter 4 choosen")
+        chapter4Load();
+        currentlyLoadedChapter = chapter4Load;
+    });
 });
 

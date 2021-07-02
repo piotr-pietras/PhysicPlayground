@@ -8,6 +8,10 @@ simplePhysic.vector = class Vector {
         this.z = z;
     }
 
+    toString() {
+        return "x: " + this.x + " y: " + this.y + " z: " + this.z;
+    }
+
     static substract(vector1, vector2) {
         let x = vector1.x - vector2.x;
         let y = vector1.y - vector2.y;
@@ -59,8 +63,8 @@ simplePhysic.vector = class Vector {
     }
 
     //Method return array of vectors [normal vector , parall vector]
-    static subdivide(vector, unitNormal) {
-        let vector1 = this.multiply(unitNormal, this.dot(vector, unitNormal)); 
+    static subdivide(vector, normalUnit) {
+        let vector1 = this.multiply(normalUnit, this.dot(vector, normalUnit)); 
         let vector2 = this.substract(vector, vector1);
         return [vector1, vector2];
     }

@@ -1,7 +1,6 @@
 simplePhysic.circle = class Circle {
     scene; elementHTML;
     properties = {
-        //class : "physic__circle",
         x : 0, //postion x [px]
         y : 0, //postion y [px]
         width : 10, //[px]
@@ -11,7 +10,8 @@ simplePhysic.circle = class Circle {
     };
     physic = {
         v : new simplePhysic.vector(0, 0, 0), //velovity [px/s]
-        mase : 0
+        mass : 0,
+        absorbe : 1
     };
 
     constructor(width, x, y, color) {
@@ -19,6 +19,7 @@ simplePhysic.circle = class Circle {
         this.properties.width = width;
         this.properties.height = width;
         this.properties.color = color;
+        this.physic.mass = Math.PI * Math.pow(width/2, 2);
         this.addCSS();
         this.styleCSS();
         this.setPosition(x, y);
@@ -26,7 +27,6 @@ simplePhysic.circle = class Circle {
 
     addCSS(){
         this.elementHTML = document.createElement("div");
-        //this.element.className = this.properties.class;
         this.elementHTML.style.position = "absolute";
         this.scene.appendChild(this.elementHTML);
     }
@@ -46,8 +46,6 @@ simplePhysic.circle = class Circle {
     highlightCSS() {
         if(!this.properties.highlighted) {
             this.properties.highlighted = true;
-            //this.elementHTML.style.background = "none";
-            //this.elementHTML.style.backgroundColor = "red";
             this.elementHTML.style.boxShadow = "0 0 "+ this.properties.width + "px " + this.properties.width/10 + "px red";
         }   
         else {

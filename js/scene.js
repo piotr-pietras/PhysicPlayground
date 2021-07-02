@@ -13,7 +13,6 @@ function hideScene() {
 function addDragToAllElements(elements) {
     let drag = undefined;
     for(let i of elements) {
-
         $(i.elementHTML).mouseenter(function (e) { 
             $((i.elementHTML)).css({cursor: "move"});
         });
@@ -34,7 +33,7 @@ function addDragToAllElements(elements) {
             if(drag == i.elementHTML) i.setPosition(
                 e.clientX - i.properties.width/2, 
                 e.clientY - i.properties.width/2);
-        });        
+        });   
     }
 }
 

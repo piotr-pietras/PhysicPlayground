@@ -15,15 +15,19 @@ simplePhysic.simulate = function() {
 
             //Check for frame collision
             if(this.checkFrameCollision) {
-                this.detectFrameCollision(this.elements[i]);
+                if(this.detectFrameCollision(this.elements[i])) {
+                    this.affectFrameCollision(this.elements[i]);
+                }
             }
 
             //Check for object collision
             if(this.checkObjectCollision) {
                 for(let j = i + 1; j < this.elements.length ; j++) {
                     if(this.elements[i] == this.elements[j]) continue;
-                    if(this.detectObjectCollision(this.elements[i], this.elements[j]))
+                    if(this.detectObjectCollision(this.elements[i], this.elements[j])){
+                        this.removeObjectCollision(this.elements[i], this.elements[j]);
                         this.affectObjectCollision(this.elements[i], this.elements[j]); 
+                    }  
                 }
             }
             this.elements[i].move();
