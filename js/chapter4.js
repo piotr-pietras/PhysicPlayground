@@ -7,11 +7,20 @@ function chapter4Load() {
     simplePhysic.addCircle(40, 350, 300, "yellow");
     simplePhysic.addCircle(40, 500, 100, "green");
     simplePhysic.addCircle(70, 300, 400, "purple");
+    simplePhysic.addCircle(80, 150, 200, "blue");
+    simplePhysic.addCircle(40, 350, 350, "red");
+    simplePhysic.addCircle(40, 150, 300, "yellow");
+    simplePhysic.addCircle(40, 500, 200, "green");
+    simplePhysic.addCircle(70, 300, 200, "purple");
+
 
     for(let i of simplePhysic.elements)
         i.physic.absorbe = 0.8;
 
-    simplePhysic.colorizeCollision = true;
+    addDragToAllElements(simplePhysic.elements);
+
+    simplePhysic.colorizeCollision = false;
+    simplePhysic.checkFrameCollision = true;
     simplePhysic.checkObjectCollision = true;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity); 
     simplePhysic.simulate();

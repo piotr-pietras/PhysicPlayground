@@ -1,16 +1,10 @@
 simplePhysic.vector = class Vector {
-    x = 0;
-    y = 0;
-    z = 0;
+    x = 0; y = 0; z = 0;
     constructor(x, y, z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.x = x; this.y = y; this.z = z;
     }
 
-    toString() {
-        return "x: " + this.x + " y: " + this.y + " z: " + this.z;
-    }
+    toString() {return "x: " + this.x + " y: " + this.y + " z: " + this.z;}
 
     static substract(vector1, vector2) {
         let x = vector1.x - vector2.x;
