@@ -11,28 +11,39 @@ function hideScene() {
 }
 
 function addDragToAllElements(elements) {
+    let zIndex = 1;
     let drag = undefined;
     for(let i of elements) {
         $(i.elementHTML).mouseenter(function (e) { 
-            $((i.elementHTML)).css({cursor: "move"});
+            $((i.elementHTML)).css({cursor: "grab"});
         });
 
-        $(i.elementHTML).click(function (e) { 
+        $(i.elementHTML).mousedown(function (e) { 
             if(!drag) {
+                i.setDragging(true);
                 drag = i.elementHTML; 
-                drag.style.zIndex = "1";
+                i.elementHTML.style.zIndex = ++zIndex;
+                $((i.elementHTML)).css({cursor: "grabbing"});
             }
-            else {
-                drag.style.zIndex = "0";
-                drag = undefined;
-            }
-
         });      
         
+        $(i.elementHTML).mouseup(function () { 
+            i.setDragging(false);
+            drag = undefined;
+            $((i.elementHTML)).css({cursor: "grab"});
+        });
+
+        $(simplePhysic.scene).mouseup(function () { 
+            i.setDragging(false);
+            drag = undefined;
+        });       
+
         $(simplePhysic.scene).mousemove(function (e) { 
-            if(drag == i.elementHTML) i.setPosition(
-                e.clientX - i.properties.width/2, 
-                e.clientY - i.properties.width/2);
+            if(drag == i.elementHTML) {
+                i.setPosition(
+                    e.clientX - i.info.width/2, 
+                    e.clientY - i.info.width/2, i.info.c);
+            }
         });   
     }
 }
