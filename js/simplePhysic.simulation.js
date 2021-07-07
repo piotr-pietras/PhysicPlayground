@@ -2,7 +2,7 @@ simplePhysic.REFRESH_PERIOD = 40; //[ms]
 simplePhysic.simulateInterval = null;
 simplePhysic.checkObjectCollision = true;
 simplePhysic.checkFrameCollision = true;
-//simplePhysic.colorizeCollision = false;
+simplePhysic.colorizeCollision = false;
 
 simplePhysic.simulate = function() {
     clearInterval(this.simulateInterval);
@@ -26,6 +26,7 @@ simplePhysic.simulate = function() {
                 }
             }
             this.elements[i].move();
+            console.log(this.elements[0].getPointsVector());
         }
     }, this.refreshPeriod);
 };

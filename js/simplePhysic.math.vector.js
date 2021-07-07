@@ -56,10 +56,20 @@ simplePhysic.vector = class Vector {
         return vector1.x * vector2.x + vector1.y * vector2.y + vector1.z * vector2.z;
     }
 
-    //Method return array of vectors [normal vector , parall vector]
+    //Method returns array of vectors [normal vector , parall vector]
     static subdivide(vector, normalUnit) {
         let vector1 = this.multiply(normalUnit, this.dot(vector, normalUnit)); 
         let vector2 = this.substract(vector, vector1);
         return [vector1, vector2];
+    }
+
+    //Method returns vector rotated in 2D around center point
+    static rotate(vector, centerVector, angle) {
+        let angleRad = angle * Math.PI/180;
+        let x0 = centerVector.x; let y0 = centerVector.y;
+        let x = ((vector.x - x0)*Math.cos(angleRad) - (vector.y - y0)*Math.sin(angleRad)) + x0;
+        let y = ((vector.x - x0)*Math.sin(angleRad) + (vector.y - y0)*Math.cos(angleRad)) + y0;
+        console.log(x, " ", y);
+        return new Vector(x, y, 0);
     }
 }

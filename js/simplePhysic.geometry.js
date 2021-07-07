@@ -36,7 +36,7 @@ simplePhysic.geometry = class Geometry{
     removeCSS() {this.elementHTML.remove();}
 
     styleCSS() {}
-/*
+
     highlightCSS() {
         if(!this.info.highlighted) {
             this.info.highlighted = true;
@@ -49,7 +49,7 @@ simplePhysic.geometry = class Geometry{
             this.elementHTML.style.background = "linear-gradient(to right," + this.info.color + " 0%,  #b7d5de 100%)";
         }
     }
-*/
+
     setPosition(x, y, c) {
         this.info.x = x; this.info.y = y; this.info.c = c;
         this.elementHTML.style.transform = "translate(" 

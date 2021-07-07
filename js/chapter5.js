@@ -1,14 +1,10 @@
-ballColors = [
-    "red", "yellow", "green", "blue", "purple"
-];
-
-function chapter1Load() {
+function chapter5Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").unbind()
+    $("#scene__simplePhysic").unbind();
 
     $("#scene__simplePhysic").click(function (e) { 
         e.preventDefault();
-        simplePhysic.addCircle(50, 
+        simplePhysic.addRectangle(50, 50, 
             e.clientX - 25, e.clientY - 25, 
             ballColors[Math.floor(Math.random() * ballColors.length)]
             );
@@ -18,10 +14,4 @@ function chapter1Load() {
     simplePhysic.checkFrameCollision = false;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity);
     simplePhysic.simulate();
-   
-    console.log("chapter 1 loaded")
 }
-
-
-
-

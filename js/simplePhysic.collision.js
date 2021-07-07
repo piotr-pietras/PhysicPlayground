@@ -1,13 +1,17 @@
 simplePhysic.detectCollision = function(element1, element2) {
     //Ball-Ball collision
     if(element1 instanceof simplePhysic.circle && element2 instanceof simplePhysic.circle) {
-        if(simplePhysic.affectBallBallCollision(element1, element2)) 
+        if(simplePhysic.affectBallBallCollision(element1, element2)) {
+            element1.highlightCSS(); element2.highlightCSS();
             simplePhysic.removeBallBallCollision(element1, element2);
+        }
     }
     //Ball-Frame collision
     else if(element1 instanceof simplePhysic.circle && element2 == "frame") {
-        if(simplePhysic.affectBallFrameCollision(element1)) 
+        if(simplePhysic.affectBallFrameCollision(element1)) {
+            element1.highlightCSS();
             simplePhysic.removeBallFrameCollision(element1);
+        }
     }
 }
 

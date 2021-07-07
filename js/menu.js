@@ -45,5 +45,17 @@ $(document).ready(function () {
         chapter4Load();
         currentlyLoadedChapter = chapter4Load;
     });
+
+    $("#menu__option--5").click(function (e) { 
+        console.log("chapter 5 choosen")
+        chapter5Load();
+        currentlyLoadedChapter = chapter5Load;
+    });
+
+    $("#menu__option--6").click(function (e) { 
+        console.log("chapter 6 choosen")
+        chapter6Load();
+        currentlyLoadedChapter = chapter6Load;
+    });
 });
 
