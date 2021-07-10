@@ -26,7 +26,6 @@ simplePhysic.simulate = function() {
                 }
             }
             this.elements[i].move();
-            console.log(this.elements[0].getPointsVector());
         }
     }, this.refreshPeriod);
 };

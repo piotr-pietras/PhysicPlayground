@@ -57,5 +57,11 @@ $(document).ready(function () {
         chapter6Load();
         currentlyLoadedChapter = chapter6Load;
     });
+
+    $("#menu__option--7").click(function (e) { 
+        console.log("chapter 7 choosen")
+        chapter7Load();
+        currentlyLoadedChapter = chapter7Load;
+    });
 });
 

@@ -13,9 +13,8 @@ function chapter4Load() {
     simplePhysic.addCircle(40, 500, 200, "green");
     simplePhysic.addCircle(70, 300, 200, "purple");
 
-
     for(let i of simplePhysic.elements)
-        i.physic.absorbe = 0.8;
+        i.physic.absorbe = 0.6;
 
     addDragToAllElements(simplePhysic.elements);
 

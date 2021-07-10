@@ -1,6 +1,7 @@
 simplePhysic.rectangle = class Rectangle extends simplePhysic.geometry {
     constructor(width, height, x, y, color) {
         super(width, height, x, y, color);
+        this.physic.mass = width * height;
     }
 
     styleCSS() {
@@ -11,13 +12,19 @@ simplePhysic.rectangle = class Rectangle extends simplePhysic.geometry {
         this.elementHTML.style.background = "linear-gradient(to right," + this.info.color + " 0%,  #b7d5de 100%)";
     }
 
-    getPointsVector() {
+    getPointVector() {
         let points = [];
-        for(let i = 0; i < 4; i++) {
-            console.log(this.getPositionVector());
-            points.push(simplePhysic.vector.rotate(
-                this.getPositionVector(), this.getCenterVector(), this.info.angle + i*90));
-        }
+        points.push(simplePhysic.vector.rotate(
+            this.getPositionVector(), this.getCenterVector(), this.info.c));
+        points.push(simplePhysic.vector.rotate(
+            simplePhysic.vector.sum(this.getPositionVector(), new simplePhysic.vector(0, this.info.height, 0)), 
+            this.getCenterVector(), this.info.c));        
+        points.push(simplePhysic.vector.rotate(
+            this.getPositionVector(), this.getCenterVector(), this.info.c + 180));  
+        points.push(simplePhysic.vector.rotate(
+            simplePhysic.vector.sum(this.getPositionVector(), new simplePhysic.vector(this.info.width, 0, 0)), 
+            this.getCenterVector(), this.info.c)); 
+
         return points;
     }
 }
