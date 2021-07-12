@@ -13,6 +13,8 @@ simplePhysic.geometry = class Geometry{
     physic = {
         v : new simplePhysic.vector(0, 0, 0), //velovity [px/s]
         w : new simplePhysic.vector(0, 0, 0), //angular velocity [deg/s]
+        vConstrain : new simplePhysic.vector(0, 0, 0), //corrective velovity for constrained object[px/s]
+        wConstrain : new simplePhysic.vector(0, 0, 0),
         mass : 0,
         absorbe : 1
     };
@@ -55,13 +57,13 @@ simplePhysic.geometry = class Geometry{
         this.elementHTML.style.transform = "translate(" 
         + this.info.x + "px,"
         + this.info.y + "px)"
-        + "rotateZ(" + this.info.c + "deg)";
+        + "rotateZ(" + this.info.c * 180/Math.PI + "deg)";
     }
 
     move() {
-        let x = this.info.x + this.physic.v.x * simplePhysic.REFRESH_PERIOD * 0.001;
-        let y = this.info.y + this.physic.v.y * simplePhysic.REFRESH_PERIOD * 0.001;
-        let c = this.info.c + this.physic.w.z;
+        let x = this.info.x + (this.physic.v.x + this.physic.vConstrain.x) * simplePhysic.REFRESH_PERIOD * 0.001;
+        let y = this.info.y + (this.physic.v.y + this.physic.vConstrain.y) * simplePhysic.REFRESH_PERIOD * 0.001;
+        let c = this.info.c + (this.physic.w.z + this.physic.wConstrain.z) * simplePhysic.REFRESH_PERIOD * 0.001;
         this.setPosition(x, y, c);
     }
     

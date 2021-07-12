@@ -15,15 +15,15 @@ simplePhysic.rectangle = class Rectangle extends simplePhysic.geometry {
     getPointVector() {
         let points = [];
         points.push(simplePhysic.vector.rotate(
-            this.getPositionVector(), this.getCenterVector(), this.info.c));
+            this.getPositionVector(), this.getCenterVector(), this.info.c * 180/Math.PI));
         points.push(simplePhysic.vector.rotate(
             simplePhysic.vector.sum(this.getPositionVector(), new simplePhysic.vector(0, this.info.height, 0)), 
-            this.getCenterVector(), this.info.c));        
+            this.getCenterVector(), this.info.c * 180/Math.PI));        
         points.push(simplePhysic.vector.rotate(
-            this.getPositionVector(), this.getCenterVector(), this.info.c + 180));  
+            this.getPositionVector(), this.getCenterVector(), (this.info.c * 180/Math.PI) + 180));  
         points.push(simplePhysic.vector.rotate(
             simplePhysic.vector.sum(this.getPositionVector(), new simplePhysic.vector(this.info.width, 0, 0)), 
-            this.getCenterVector(), this.info.c)); 
+            this.getCenterVector(), this.info.c * 180/Math.PI)); 
 
         return points;
     }

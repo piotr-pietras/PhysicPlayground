@@ -2,14 +2,14 @@ simplePhysic.detectCollision = function(element1, element2) {
     //Ball-Ball collision
     if(element1 instanceof simplePhysic.circle && element2 instanceof simplePhysic.circle) {
         if(simplePhysic.affectBallBallCollision(element1, element2)) {
-            element1.highlightCSS(); element2.highlightCSS();
+            //element1.highlightCSS(); element2.highlightCSS();
             simplePhysic.removeBallBallCollision(element1, element2);
         }
     }
     //Ball-Frame collision
     else if(element1 instanceof simplePhysic.circle && element2 == "frame") {
         if(simplePhysic.affectBallFrameCollision(element1)) {
-            element1.highlightCSS();
+            //element1.highlightCSS();
             simplePhysic.removeBallFrameCollision(element1);
         }
     }
@@ -17,7 +17,7 @@ simplePhysic.detectCollision = function(element1, element2) {
     //Rectangle-Rectangle collision
     else if(element1 instanceof simplePhysic.rectangle && element2 instanceof simplePhysic.rectangle) {
         if(simplePhysic.affectRectangleRectangleCollision(element1,element2).boolean) {
-            element1.highlightCSS(); element2.highlightCSS();
+            //element1.highlightCSS(); element2.highlightCSS();
             simplePhysic.removeRectangleRectangleCollision(element1);
         }
     }   
@@ -25,7 +25,7 @@ simplePhysic.detectCollision = function(element1, element2) {
     //Rectangle-Frame collision 
     else if(element1 instanceof simplePhysic.rectangle && element2 == "frame") {
         if(simplePhysic.affectRectangleFrameCollision(element1)) {
-            element1.highlightCSS();
+            //element1.highlightCSS();
             simplePhysic.removeRectangleFrameCollision(element1);            
         }
     }
@@ -125,12 +125,27 @@ simplePhysic.removeBallBallCollision = function(element1, element2) {
 //----------------------------------------------------------------
 simplePhysic.affectRectangleFrameCollision = function(element) {
     let affected = false;
-    let affect = function (point, normalUnit) {
+    let affect = function (pointVector, normalUnit) {
         v1 = simplePhysic.vector.subdivide(element.physic.v, normalUnit);
         u = simplePhysic.linearMomentumPreservation(v1, 0, element.physic.mass, 0);
         element.physic.v = simplePhysic.vector.sum(
             simplePhysic.vector.multiply(u.u1[0], element.physic.absorbe), 
             u.u1[1]);
+        
+        
+        r = simplePhysic.vector.substract(pointVector, element.getCenterVector());
+        r = simplePhysic.vector.multiply(r, 1/element.physic.mass);
+        element.physic.w = simplePhysic.vector.cross(r, u.u1[0]);
+        
+        //Gravity Angular Momentum 
+        /*
+        d = simplePhysic.gravityAngularMomentumEffect(element, pointVector);
+        element.physic.wConstrain = simplePhysic.vector.sum(element.physic.wConstrain, d.dw);
+        element.physic.vConstrain = simplePhysic.vector.cross(
+            simplePhysic.vector.substract(d.constrain, element.getCenterVector()), 
+            simplePhysic.vector.multiply(element.physic.wConstrain,  1)
+            );
+        */
         affected = true;
     }
 
@@ -138,16 +153,13 @@ simplePhysic.affectRectangleFrameCollision = function(element) {
     for(let i = 0; i < 4; i++) {
         if(pointsVector[i].x < 0 
         || pointsVector[i].x > this.scene.clientWidth) {
-            affect(pointsVector[i], new this.vector(1,0,0));
-            break;
+            affect(pointsVector[i], new this.vector(1,0,0)); break;
         }
     }
-
     for(let i = 0; i < 4; i++) {
         if(pointsVector[i].y < 0 
         || pointsVector[i].y > this.scene.clientHeight) {
-            affect(pointsVector[i], new this.vector(0,1,0))
-            break;
+            affect(pointsVector[i], new this.vector(0,1,0)); break;
         }
     }
     return affected;
@@ -159,17 +171,14 @@ simplePhysic.removeRectangleFrameCollision = function(element) {
     let remove = function(normalUnit, magnitude) {
         let moveByVector = simplePhysic.vector.multiply(normalUnit, magnitude);
         element.setPosition(element.info.x + moveByVector.x, element.info.y + moveByVector.y, element.info.c);
-        console.log(moveByVector);
     }
 
     for(let i = 0; i < 4; i++) {
         if(pointsVector[i].x < 0) {
-            remove(new this.vector(-1,0,0), pointsVector[i].x); 
-            break;
+            remove(new this.vector(-1,0,0), pointsVector[i].x); break;
         }
         else if(pointsVector[i].x > this.scene.clientWidth){ 
-            remove(new this.vector(-1,0,0), pointsVector[i].x - this.scene.clientWidth); 
-            break
+            remove(new this.vector(-1,0,0), pointsVector[i].x - this.scene.clientWidth); break
         }
     }
 
@@ -180,7 +189,6 @@ simplePhysic.removeRectangleFrameCollision = function(element) {
         }
         else if(pointsVector[i].y > this.scene.clientHeight) {
             remove(new this.vector(0,-1,0), pointsVector[i].y - this.scene.clientHeight); 
-            //console.log(i + " broke");
             break;
         }
     }

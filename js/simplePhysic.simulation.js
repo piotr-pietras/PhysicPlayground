@@ -2,7 +2,6 @@ simplePhysic.REFRESH_PERIOD = 40; //[ms]
 simplePhysic.simulateInterval = null;
 simplePhysic.checkObjectCollision = true;
 simplePhysic.checkFrameCollision = true;
-simplePhysic.colorizeCollision = false;
 
 simplePhysic.simulate = function() {
     clearInterval(this.simulateInterval);

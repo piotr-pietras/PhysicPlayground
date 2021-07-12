@@ -13,7 +13,6 @@ function chapter3Load() {
     simplePhysic.addCircle(70, 300, 400, "purple");
     simplePhysic.elements[4].physic.v = new simplePhysic.vector(5,-80,0);
 
-    simplePhysic.colorizeCollision = false;
     simplePhysic.checkFrameCollision = true;
     simplePhysic.checkObjectCollision = true;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity); 

@@ -18,7 +18,6 @@ function chapter4Load() {
 
     addDragToAllElements(simplePhysic.elements);
 
-    simplePhysic.colorizeCollision = false;
     simplePhysic.checkFrameCollision = true;
     simplePhysic.checkObjectCollision = true;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity); 
