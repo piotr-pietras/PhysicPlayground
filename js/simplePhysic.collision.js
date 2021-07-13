@@ -18,6 +18,7 @@ simplePhysic.detectCollision = function(element1, element2) {
     else if(element1 instanceof simplePhysic.rectangle && element2 instanceof simplePhysic.rectangle) {
         if(simplePhysic.affectRectangleRectangleCollision(element1,element2).boolean) {
             //element1.highlightCSS(); element2.highlightCSS();
+            //console.log("collide");
             simplePhysic.removeRectangleRectangleCollision(element1);
         }
     }   
@@ -35,12 +36,12 @@ simplePhysic.detectCollision = function(element1, element2) {
 //BALL-FRAME
 //----------------------------------------------------------------
 simplePhysic.affectBallFrameCollision = function (element) {
-    let v1, u;
+    let v1;
     let centerVector = element.getCenterVector();
 
     let affect = function(normalUnit) {
-        v1 = simplePhysic.vector.subdivide(element.physic.v, normalUnit);
-        u = simplePhysic.linearMomentumPreservation(v1, 0, element.physic.mass, 0);
+        let v1 = simplePhysic.vector.subdivide(element.physic.v, normalUnit);
+        let u = simplePhysic.linearMomentumPreservation(v1, 0, element.physic.mass, 0);
         element.physic.v = simplePhysic.vector.sum(
             simplePhysic.vector.multiply(u.u1[0], element.physic.absorbe) , 
             u.u1[1]);
@@ -108,7 +109,7 @@ simplePhysic.affectBallBallCollision = function (element1, element2) {
 }
 
 simplePhysic.removeBallBallCollision = function(element1, element2) {
-    let normalVector = this.vector.substract(element2.getCenterVector(), element1.getCenterVector());
+    let  normalVector = this.vector.substract(element2.getCenterVector(), element1.getCenterVector());
     let normalUnit = this.vector.unit(normalVector);
 
     let excessDistnace = element1.info.width/2 + element2.info.width/2 - this.vector.magnitude(normalVector);
@@ -125,16 +126,16 @@ simplePhysic.removeBallBallCollision = function(element1, element2) {
 //----------------------------------------------------------------
 simplePhysic.affectRectangleFrameCollision = function(element) {
     let affected = false;
-    let affect = function (pointVector, normalUnit) {
-        v1 = simplePhysic.vector.subdivide(element.physic.v, normalUnit);
-        u = simplePhysic.linearMomentumPreservation(v1, 0, element.physic.mass, 0);
+    let affect = function (collideVector, normalUnit) {
+        let v1 = simplePhysic.vector.subdivide(element.physic.v, normalUnit);
+        let u = simplePhysic.linearMomentumPreservation(v1, 0, element.physic.mass, 0);
         element.physic.v = simplePhysic.vector.sum(
             simplePhysic.vector.multiply(u.u1[0], element.physic.absorbe), 
             u.u1[1]);
-        
-        
-        r = simplePhysic.vector.substract(pointVector, element.getCenterVector());
-        r = simplePhysic.vector.multiply(r, 1/element.physic.mass);
+                
+        let r = simplePhysic.vector.multiply(
+            simplePhysic.vector.substract(collideVector, element.getCenterVector()),
+            1/element.physic.mass);
         element.physic.w = simplePhysic.vector.cross(r, u.u1[0]);
         
         //Gravity Angular Momentum 
@@ -197,44 +198,46 @@ simplePhysic.removeRectangleFrameCollision = function(element) {
 //RECTANGLE-RECTANGLE COLLISION
 //----------------------------------------------------------------
 simplePhysic.affectRectangleRectangleCollision = function (element1, element2) {
-    //Returns area of rectangle
-    let rectArea = function (vector1, vector2, vector3) {
-        let width = simplePhysic.vector.magnitude(
-            simplePhysic.vector.substract(vector1, vector2));
-        let height = simplePhysic.vector.magnitude(
-            simplePhysic.vector.substract(vector2, vector3));
-        return width*height;
-    }
-    //Returns area of triangle
-    let triArea = function (vector1, vector2, vector3) {
-        let ax = vector1.x; let ay = vector1.y;
-        let bx = vector2.x; let by = vector2.y;
-        let cx = vector3.x; let cy = vector3.y;
-        return Math.abs((ax*(by-cy) + bx*(cy-ay) + cx*(ay-by)) / 2);
-    }
-    /*
-    let affect = function (point, element) {
-        let eVectors = element.getPointsVector();
-        let 
+    //Returns unit normal vector of collision
+    let findNormal = function(collideVector, element) {
+        closestPoints = element.getPointVector();
+        closestPoints.sort((a, b) => {
+            if(simplePhysic.vector.distance(a,collideVector)
+             > simplePhysic.vector.distance(b,collideVector))
+                return 1;
+            else return -1;
+        });
+        
+        let pointsVector = element.getPointVector();
+        let line1 = new simplePhysic.line(closestPoints[0], closestPoints[1]);
+        let line2 = new simplePhysic.line(closestPoints[0], closestPoints[2]);
+
+        console.log(line1.v, line2.v);
+
         for(let i = 0; i < 4; i++) {
-            let length = simplePhysic.vector.magnitude(
-                simplePhysic.vector.substract(point, eVectors[i]));
-            if()
+            let line0 = new simplePhysic.line(pointsVector[i], pointsVector[(i+1)%4]);
+            if(simplePhysic.line.intersect(line0, line1)) return line1.v;
+            if(simplePhysic.line.intersect(line0, line2)) return line2.v;
         }
     }
-    */
-    let pointsVector1 = element1.getPointVector();
-    let pointsVector2 = element2.getPointVector();   
-    let area1 = rectArea(e1Vectors[0], e1Vectors[1], e1Vectors[2]);
-    let area2 = rectArea(e2Vectors[0], e2Vectors[1], e2Vectors[2]);
+
+    let affect = function (collideVector, element) {
+        
+    }
+    
+    let pointsVector1 = element1.getPointVector(); pointsVector2 = element2.getPointVector();   
+    let area1 = this.rectangleArea(pointsVector1[0], pointsVector1[1], pointsVector1[2]); 
+    let area2 = this.rectangleArea(pointsVector2[0], pointsVector2[1], pointsVector2[2]);
 
     //Element 1 collides with Element 2
     for(let i = 0; i < 4; i++) {
         let sum = 0;
         for(let j = 0; j < 4; j++) 
-            sum += triArea(pointsVector1[i], pointsVector2[j], pointsVector2[(j+1)%4]);
+            sum += this.triangleArea(pointsVector1[i], pointsVector2[j], pointsVector2[(j+1)%4]);
         if(sum < area2 + 1) {
-            //affect(e1Vectors[i], element1);
+            //normalUnit = findNormal(pointsVector1[i], element2);
+            console.log(findNormal(pointsVector1[i], element2));
+            //affect(pointsVector1[i], element2);
             return {boolean : true, vector : pointsVector1[i], element : element2};
         }  
     }
@@ -243,9 +246,10 @@ simplePhysic.affectRectangleRectangleCollision = function (element1, element2) {
     for(let i = 0; i < 4; i++) {
         let sum = 0;
         for(let j = 0; j < 4; j++) 
-            sum += triArea(pointsVector2[i], pointsVector1[j], pointsVector1[(j+1)%4]);
+            sum += this.triangleArea(pointsVector2[i], pointsVector1[j], pointsVector1[(j+1)%4]);
         if(sum < area1 + 1) {
-            //affect(e2Vectors[i], element2);
+            //normalUnit = findNormal(pointsVector2[i], element1);
+            //affect(pointsVector2[i], element1);
             return {boolean : true, vector : pointsVector2[i], element : element1};
         }
     }

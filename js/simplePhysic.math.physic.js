@@ -28,7 +28,7 @@ simplePhysic.linearMomentumPreservation = function(v1, v2, m1 ,m2) {
         u2 : u2
     };
 }
-
+/*
 simplePhysic.gravityAngularMomentumEffect = function(element, pointVector) {
     for(let effect of this.activeEffects)
         if(effect == this.effectOfGravity) {
@@ -47,3 +47,4 @@ simplePhysic.gravityAngularMomentumEffect = function(element, pointVector) {
         dw : new this.vector(0, 0, 0)
     }
 }
+*/
