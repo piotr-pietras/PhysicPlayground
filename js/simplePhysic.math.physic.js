@@ -28,6 +28,13 @@ simplePhysic.linearMomentumPreservation = function(v1, v2, m1 ,m2) {
         u2 : u2
     };
 }
+
+simplePhysic.constrainRotation = function(element, constrainVector) {
+    let centerVector = element.getCenterVector();
+    let r = this.vector.substract(centerVector, constrainVector);
+    let dv = this.vector.cross(r, element.physic.w);
+    //return {}
+}
 /*
 simplePhysic.gravityAngularMomentumEffect = function(element, pointVector) {
     for(let effect of this.activeEffects)

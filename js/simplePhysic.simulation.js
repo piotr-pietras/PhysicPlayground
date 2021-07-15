@@ -14,7 +14,7 @@ simplePhysic.simulate = function() {
 
             //Check for frame collision
             if(this.checkFrameCollision) {
-                this.detectCollision(this.elements[i], "frame");
+                simplePhysic.detectCollision(this.elements[i], "frame");
             }
 
             //Check for object collision

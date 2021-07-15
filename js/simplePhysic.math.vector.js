@@ -71,4 +71,11 @@ simplePhysic.vector = class Vector {
         let y = ((vector.x - x0)*Math.sin(angleRad) + (vector.y - y0)*Math.cos(angleRad)) + y0;
         return new Vector(x, y, 0);
     }
+
+    //Method returns angle between vectors in rad
+    static angle(vector1, vector2) {
+        let dot = this.dot(vector1, vector2);
+        let t = this.magnitude(vector1) * this.magnitude(vector2);
+        return Math.acos(dot / t);
+    }
 }
