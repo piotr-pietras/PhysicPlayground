@@ -22,6 +22,7 @@
     right: 5%;
 
     display: flex;
+    justify-content: flex-start;
 
     z-index: 5;
 
@@ -32,8 +33,10 @@
 }
 
 [id^="control-panel"] {
-    width: 8%;
-    height: auto;
+    position: relative;
+
+    height: 100%;
+    width: 10%;
     margin: 0% 2%;
 
     background-size: contain;

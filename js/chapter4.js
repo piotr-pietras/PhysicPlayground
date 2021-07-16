@@ -16,7 +16,7 @@ function chapter4Load() {
     for(let i of simplePhysic.elements)
         i.physic.absorbe = 0.5;
 
-    addDragToAllElements(simplePhysic.elements);
+    simplePhysic.addDragToAllElements(simplePhysic.elements);
 
     simplePhysic.checkFrameCollision = true;
     simplePhysic.checkObjectCollision = true;

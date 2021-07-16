@@ -15,7 +15,7 @@ function chapter2Load() {
     simplePhysic.addCircle(50, 50, 550, "black");
     simplePhysic.addCircle(25, 350, 555, "black");
 
-    addDragToAllElements(simplePhysic.elements);
+    simplePhysic.addDragToAllElements(simplePhysic.elements);
 
     simplePhysic.checkObjectCollision = true;
     simplePhysic.checkFrameCollision = true;

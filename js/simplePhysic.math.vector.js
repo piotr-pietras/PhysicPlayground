@@ -78,4 +78,19 @@ simplePhysic.vector = class Vector {
         let t = this.magnitude(vector1) * this.magnitude(vector2);
         return Math.acos(dot / t);
     }
+
+    //Method returns vector with changed values to absolute
+    static absolute(vector) {
+        return new Vector(Math.abs(vector.x), Math.abs(vector.y), Math.abs(vector.z));
+    }
+
+    static assimilate(vector, normalUnit) {
+        let x = vector.x;
+        let y = vector.y;
+        let z = vector.z;
+        if(Math.sign(x) != Math.sign(normalUnit.x)) x *= -1;
+        if(Math.sign(y) != Math.sign(normalUnit.y)) y *= -1;
+        if(Math.sign(z) != Math.sign(normalUnit.y)) z *= -1;
+        return new Vector(x, y, z);
+    }
 }

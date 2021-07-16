@@ -19,7 +19,7 @@ simplePhysic.clearAll = function () {
    this.activeEffects = []
 }
 
-function addDragToAllElements(elements) {
+simplePhysic.addDragToAllElements = function(elements) {
    let zIndex = 10;
    let drag = undefined;
    for(let i of elements) {

@@ -8,7 +8,7 @@ function chapter6Load() {
     simplePhysic.addRectangle(300, 100, 300, 300, "black");
     simplePhysic.elements[1].info.c = Math.PI/4;
 
-    addDragToAllElements(simplePhysic.elements);
+    simplePhysic.addDragToAllElements(simplePhysic.elements);
 
     simplePhysic.checkObjectCollision = true;
     simplePhysic.checkFrameCollision = true;

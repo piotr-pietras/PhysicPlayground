@@ -1,5 +1,5 @@
 simplePhysic.linearMomentumPreservation = function(v1, v2, m1 ,m2) {
-    if(v2 == 0) {
+    if(m2 == 0) {
         let u1 = [this.vector.contrary(v1[0]),v1[1]];
         return {
             u1 : u1, 
@@ -30,17 +30,18 @@ simplePhysic.linearMomentumPreservation = function(v1, v2, m1 ,m2) {
 }
 
 simplePhysic.constrainRotation = function(element, constrainVector) {
-    let centerVector = element.getCenterVector();
-    let r = this.vector.substract(centerVector, constrainVector);
-    let dv = this.vector.cross(r, element.physic.w);
-    //return {}
+    let vConstrain = this.vector.cross(
+        this.vector.substract(constrainVector, element.getCenterVector()), 
+        this.vector.multiply(element.physic.w,  1)
+        );
+    return vConstrain;
 }
-/*
+
 simplePhysic.gravityAngularMomentumEffect = function(element, pointVector) {
     for(let effect of this.activeEffects)
         if(effect == this.effectOfGravity) {
             let centerVector = element.getCenterVector();
-            if(pointVector.y >= this.scene.clientHeight) {
+            if(true) {
                 let r = this.vector.substract(centerVector, pointVector).x;
                 let dw = new this.vector(0, 0, r * 0.001 * this.G * simplePhysic.REFRESH_PERIOD * 0.001);
                 return {
@@ -54,4 +55,3 @@ simplePhysic.gravityAngularMomentumEffect = function(element, pointVector) {
         dw : new this.vector(0, 0, 0)
     }
 }
-*/
