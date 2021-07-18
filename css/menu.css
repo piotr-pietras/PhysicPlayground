@@ -45,11 +45,11 @@
         0 0 10px white,
         0 0 30px white;
 
-    z-index: 2;
+    z-index: 3;
     user-select: none;
 
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity 0.5s;
 }
 
 [id^="menu__option"] {

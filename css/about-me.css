@@ -1,0 +1,17 @@
+@keyframes sprite{
+    to{background-position: -640px;}
+}
+
+#about-me {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    bottom: 0px;
+    right: 0px;
+    
+    cursor: pointer;
+    z-index: 2;
+
+    background-image: url(../img/aboutme.png);
+    animation: sprite 0.6s steps(4) infinite;
+}

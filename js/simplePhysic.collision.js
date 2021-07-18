@@ -169,15 +169,16 @@ simplePhysic.affectRectangleFrameCollision = function(element, collide) {
         element.physic.v = this.vector.sum(
             this.vector.multiply(u.u1[0], element.physic.absorbe), 
             u.u1[1]);
-            
+         
         let r = this.vector.multiply(
             this.vector.substract(pick.collideVector, element.getCenterVector()),
             1/element.physic.mass);
         element.physic.w = this.vector.cross(r, u.u1[0]);
         
-        //element.physic.vConstrain = this.constrainRotation(element, pick.collideVector);
-        /*
-        //Gravity Angular Momentum 
+        element.physic.vConstrain = this.constrainRotation(element, pick.collideVector);
+        
+        //Gravity Angular Momentum
+         /*
         let d = this.gravityAngularMomentumEffect(element, pick.collideVector);
         element.physic.wConstrain = this.vector.sum(element.physic.wConstrain, d.dw);
         element.physic.vConstrain = 
@@ -185,7 +186,7 @@ simplePhysic.affectRectangleFrameCollision = function(element, collide) {
                 this.vector.substract(pick.collideVector, element.getCenterVector()), 
                 element.physic.wConstrain
                 );
-        */
+        */        
     }
 }
 //---------------------------Remove-------------------------------------
@@ -281,18 +282,19 @@ simplePhysic.affectRectangleRectangleCollision = function (collide) {
         simplePhysic.vector.multiply(u.u2[0], element2.physic.absorbe),
         u.u2[1]);
  
-    
+    /*
     let r1 = this.vector.multiply(
         this.vector.substract(collide.collideVector, element1.getCenterVector()),
         1/element1.physic.mass);
     element1.physic.w = simplePhysic.vector.cross(r1, u.u1[0]);
-    //element1.physic.vConstrain = this.constrainRotation(element1, collide.collideVector);
+    element1.physic.vConstrain = this.constrainRotation(element1, collide.collideVector);
     
     let r2 = this.vector.multiply(
         this.vector.substract(this.vector.contrary(collide.collideVector), element2.getCenterVector()),
         1/element2.physic.mass);
     element2.physic.w = simplePhysic.vector.cross(r2, u.u2[0]);
-    //element2.physic.vConstrain = this.constrainRotation(element2, collide.collideVector);*/
+    element2.physic.vConstrain = this.constrainRotation(element2, collide.collideVector);
+    */
 }
 //---------------------------Remove-------------------------------------
 simplePhysic.removeRectangleRectangleCollision = function(collide) {
