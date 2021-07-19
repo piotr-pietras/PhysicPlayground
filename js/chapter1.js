@@ -4,7 +4,7 @@ ballColors = [
 
 function chapter1Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").unbind()
+    $("#scene__simplePhysic").empty();
 
     $("#scene__simplePhysic").click(function (e) { 
         e.preventDefault();
@@ -19,7 +19,7 @@ function chapter1Load() {
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity);
     simplePhysic.simulate();
    
-    console.log("chapter 1 loaded")
+    console.log("-> chapter 1 loaded")
 }
 
 

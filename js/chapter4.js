@@ -1,6 +1,6 @@
 function chapter4Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").unbind();
+    $("#scene__simplePhysic").empty();
 
     simplePhysic.addCircle(80, 50, 50, "blue");
     simplePhysic.addCircle(40, 350, 50, "red");
@@ -22,5 +22,5 @@ function chapter4Load() {
     simplePhysic.checkObjectCollision = true;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity); 
     simplePhysic.simulate();
-    console.log("chapter 4 loaded");
+    console.log("-> chapter 4 loaded");
 }

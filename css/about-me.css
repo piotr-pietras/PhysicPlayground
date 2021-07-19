@@ -1,17 +1,83 @@
+@font-face {
+    font-family: "3dumb";
+    src: url(../fonts/3dumb/3Dumb.ttf);
+}
+
 @keyframes sprite{
     to{background-position: -640px;}
 }
 
 #about-me {
     position: absolute;
-    width: 160px;
-    height: 160px;
     bottom: 0px;
     right: 0px;
+}
+
+#about-me__sprite {
+    position: relative;
+    width: 160px;
+    height: 160px;
     
     cursor: pointer;
     z-index: 2;
 
     background-image: url(../img/aboutme.png);
     animation: sprite 0.6s steps(4) infinite;
+}
+
+#about-me__cloude {
+    position: relative;
+    width: 160px;
+    height: 60px;   
+
+    text-align: center;
+
+    background-image: url(../img/cloude-aboutme.png);
+}
+
+#about-me__textarea {
+    font-family: "3dumb";
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 2%;
+}
+
+#about-me__button {
+    font-family: "3dumb";
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 2%;
+
+    cursor: pointer;
+}
+
+#about-me__button::after {
+    content: "Show my skills";
+}
+
+#about-me__skills {
+    position: absolute;
+    display: none;
+    width: 50%;
+    height: 50%;
+
+    z-index: 5;
+
+    background-color: rgb(161, 125, 125);
+    /*border: solid 1px black;*/
+    border-radius: 2%;
+
+    opacity: 0.9;
+}
+
+.about-me__skills--0 {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../img/back.png");
+    /*border: solid 1px black;*/
+}
+
+.about-me__skills--1 {
+
 }

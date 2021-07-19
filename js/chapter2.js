@@ -1,6 +1,6 @@
 function chapter2Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").unbind();
+    $("#scene__simplePhysic").empty();
 
     simplePhysic.addCircle(100, 100, 50, "black");
     simplePhysic.addCircle(150, 300, 100, "black");
@@ -21,5 +21,5 @@ function chapter2Load() {
     simplePhysic.checkFrameCollision = true;
     simplePhysic.activeEffects = [];
     simplePhysic.simulate();
-    console.log("chapter 2 loaded");
+    console.log("-> chapter 2 loaded");
 }

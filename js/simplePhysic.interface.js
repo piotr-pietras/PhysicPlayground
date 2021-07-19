@@ -17,6 +17,7 @@ simplePhysic.clearAll = function () {
    }
    this.elements = [];
    this.activeEffects = []
+   console.log("-> simplePhysic cleared all")
 }
 
 simplePhysic.addDragToAllElements = function(elements) {

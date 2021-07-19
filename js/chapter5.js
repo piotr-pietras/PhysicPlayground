@@ -1,6 +1,6 @@
 function chapter5Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").unbind();
+    $("#scene__simplePhysic").empty();
 
     $("#scene__simplePhysic").click(function (e) { 
         e.preventDefault();
@@ -14,4 +14,5 @@ function chapter5Load() {
     simplePhysic.checkFrameCollision = false;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity);
     simplePhysic.simulate();
+    console.log("-> chapter 5 loaded");
 }

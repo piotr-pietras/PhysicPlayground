@@ -32,6 +32,15 @@
     animation: show-menu 1s ease-out 3s 1 alternate forwards;
 }
 
+#menu__info {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    color: white;
+    font-size: 0.5em;
+}
+
 #menu__tooltip {
     position: absolute;
     max-width: 35%;
@@ -45,11 +54,11 @@
         0 0 10px white,
         0 0 30px white;
 
-    z-index: 3;
+    z-index: 2;
     user-select: none;
 
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 1s;
 }
 
 [id^="menu__option"] {

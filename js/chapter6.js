@@ -1,6 +1,6 @@
 function chapter6Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").unbind();
+    $("#scene__simplePhysic").empty();
 
     simplePhysic.addRectangle(100, 50, 100, 50, "black");
     //simplePhysic.elements[0].info.c = Math.PI/4;
@@ -14,5 +14,5 @@ function chapter6Load() {
     simplePhysic.checkFrameCollision = true;
     simplePhysic.activeEffects = [];
     simplePhysic.simulate();
-    console.log("chapter 6 loaded");
+    console.log("-> chapter 6 loaded");
 }

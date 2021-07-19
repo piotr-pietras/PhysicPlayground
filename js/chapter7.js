@@ -1,6 +1,6 @@
 function chapter7Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").unbind();
+    $("#scene__simplePhysic").empty();
 
     simplePhysic.addRectangle(280, 50, 100, 350, "blue");
     //simplePhysic.elements[0].physic.v = new simplePhysic.vector(25,00,0);
@@ -18,5 +18,5 @@ function chapter7Load() {
     simplePhysic.checkObjectCollision = true;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity); 
     simplePhysic.simulate();
-    console.log("chapter 7 loaded");
+    console.log("-> chapter 7 loaded");
 }
