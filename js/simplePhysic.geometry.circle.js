@@ -2,6 +2,7 @@ simplePhysic.circle = class Circle extends simplePhysic.geometry{
     constructor(width, x, y, color) {
         super(width, width, x, y, color);
         this.physic.mass = Math.PI * Math.pow(width/2, 2);
+        this.physic.inertia = this.physic.mass * Math.pow(width/2, 2);
     }
 
     styleCSS() {

@@ -169,24 +169,12 @@ simplePhysic.affectRectangleFrameCollision = function(element, collide) {
         element.physic.v = this.vector.sum(
             this.vector.multiply(u.u1[0], element.physic.absorbe), 
             u.u1[1]);
-         
-        let r = this.vector.multiply(
-            this.vector.substract(pick.collideVector, element.getCenterVector()),
-            1/element.physic.mass);
-        element.physic.w = this.vector.cross(r, u.u1[0]);
-        
-        element.physic.vConstrain = this.constrainRotation(element, pick.collideVector);
-        
-        //Gravity Angular Momentum
-         /*
-        let d = this.gravityAngularMomentumEffect(element, pick.collideVector);
-        element.physic.wConstrain = this.vector.sum(element.physic.wConstrain, d.dw);
-        element.physic.vConstrain = 
-            this.vector.cross(
-                this.vector.substract(pick.collideVector, element.getCenterVector()), 
-                element.physic.wConstrain
-                );
-        */        
+        //this.angularMomentumGenerating(element, u.u1[0], pick.collideVector);
+       
+        //Gravity angular momentum
+        /*let dw = this.gravityAngularMomentumEffect(element, pick.collideVector);
+        element.physic.wConstrain = this.vector.sum(element.physic.wConstrain, dw);
+        element.physic.vConstrain = this.constrainRotation(element,pick.collideVector);*/
     }
 }
 //---------------------------Remove-------------------------------------
@@ -271,15 +259,15 @@ simplePhysic.detectRectangleRectangleCollision = function (element1, element2) {
 simplePhysic.affectRectangleRectangleCollision = function (collide) {
     let element1 = collide.element1;
     let element2 = collide.element2;
-    let v1 = simplePhysic.vector.subdivide(element1.physic.v, collide.normalUnit);
-    let v2 = simplePhysic.vector.subdivide(element2.physic.v, this.vector.contrary(collide.normalUnit));
-    let u = simplePhysic.linearMomentumPreservation(v1, v2, element1.physic.mass, element2.physic.mass);
+    let v1 = this.vector.subdivide(element1.physic.v, collide.normalUnit);
+    let v2 = this.vector.subdivide(element2.physic.v, this.vector.contrary(collide.normalUnit));
+    let u = this.linearMomentumPreservation(v1, v2, element1.physic.mass, element2.physic.mass);
 
-    element1.physic.v = simplePhysic.vector.sum(
-        simplePhysic.vector.multiply(u.u1[0], element1.physic.absorbe), 
+    element1.physic.v = this.vector.sum(
+        this.vector.multiply(u.u1[0], element1.physic.absorbe), 
         u.u1[1]);
-    element2.physic.v = simplePhysic.vector.sum(
-        simplePhysic.vector.multiply(u.u2[0], element2.physic.absorbe),
+    element2.physic.v = this.vector.sum(
+        this.vector.multiply(u.u2[0], element2.physic.absorbe),
         u.u2[1]);
  
     /*

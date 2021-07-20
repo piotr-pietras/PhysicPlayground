@@ -1,4 +1,4 @@
-//----------------------------------------------------------------
+//-----------------------On DOC load-----------------------------------------
 $(document).ready(function () {
     $("#control-panel__back").click(function (e) { 
         hideControlPanel();
@@ -11,7 +11,7 @@ $(document).ready(function () {
     });
 });
 
-//----------------------------------------------------------------
+//-----------------------Panel control-----------------------------------------
 function showControlPanel() {
     console.log("-> show control panel");
     $(".control-panel").css({

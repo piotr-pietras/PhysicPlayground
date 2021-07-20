@@ -42,7 +42,7 @@
     margin: 2%;
 }
 
-#about-me__button {
+[id^="about-me__button"] {
     font-family: "3dumb";
     font-size: 1.5em;
     font-weight: bold;
@@ -51,11 +51,7 @@
     cursor: pointer;
 }
 
-#about-me__button::after {
-    content: "Show my skills";
-}
-
-#about-me__skills {
+#about-me__tooltip {
     position: absolute;
     display: none;
     width: 50%;
@@ -63,21 +59,21 @@
 
     z-index: 5;
 
-    background-color: rgb(161, 125, 125);
-    /*border: solid 1px black;*/
+    background-color:rgba(128, 128, 128, 0.9);
+    border: solid 1px black;
     border-radius: 2%;
-
-    opacity: 0.9;
 }
 
-.about-me__skills--0 {
+[class^="about-me__skills"] {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url("../img/back.png");
-    /*border: solid 1px black;*/
+}
+
+.about-me__skills--0 {
+    background-image: url("../img/star0.png");
 }
 
 .about-me__skills--1 {
-
+    background-image: url("../img/star1.png");
 }

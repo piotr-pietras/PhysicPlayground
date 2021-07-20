@@ -2,6 +2,7 @@ simplePhysic.rectangle = class Rectangle extends simplePhysic.geometry {
     constructor(width, height, x, y, color) {
         super(width, height, x, y, color);
         this.physic.mass = width * height;
+        this.physic.inertia = this.physic.mass * (Math.pow(width, 2) + Math.pow(height, 2)) / 12;
     }
 
     styleCSS() {

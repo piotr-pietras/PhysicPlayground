@@ -16,7 +16,8 @@ simplePhysic.geometry = class Geometry{
         vConstrain : new simplePhysic.vector(0, 0, 0), //corrective velovity for constrained object[px/s]
         wConstrain : new simplePhysic.vector(0, 0, 0),
         mass : 0,
-        absorbe : 1
+        inertia : 0, // moment of inertia
+        absorbe : 1 // material kinetic energy absorbtion (1 means no absorbtion)
     };
 
     constructor(width, height, x, y, color) {

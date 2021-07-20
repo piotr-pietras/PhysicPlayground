@@ -1,3 +1,4 @@
+//-----------------------Scene control-----------------------------------------
 function showScene() {
     console.log("-> show scene");
     $(".scene").css({

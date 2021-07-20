@@ -1,5 +1,5 @@
 currentlyLoadedChapter = undefined;
-
+//-----------------------On DOC load-----------------------------------------
 $(document).ready(function () {
 
     $("[id^='menu__option']").mousemove(function (e) { 

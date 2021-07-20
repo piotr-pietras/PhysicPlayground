@@ -29,29 +29,39 @@ simplePhysic.linearMomentumPreservation = function(v1, v2, m1 ,m2) {
     };
 }
 
+simplePhysic.angularVelocityToLinear = function(element, collideVector) {
+    let r = this.vector.substract(collideVector, element.getCenterVector());
+    return this.vector.cross(r, element.physic.w);
+}
+
+
+simplePhysic.angularMomentumGenerating = function(element, v, collideVector) {
+    let r = this.vector.substract(collideVector, element.getCenterVector());
+    let p = this.vector.multiply(v, element.physic.mass);
+    //console.log("-> ", this.vector.magnitude(v));
+    let w = this.vector.multiply(
+        this.vector.cross(r, p), (1/element.physic.inertia));
+    element.physic.w = w;
+}
+
+/*
 simplePhysic.constrainRotation = function(element, constrainVector) {
     let vConstrain = this.vector.cross(
         this.vector.substract(constrainVector, element.getCenterVector()), 
-        this.vector.multiply(element.physic.w,  1)
+        element.physic.w
         );
     return vConstrain;
 }
 
-simplePhysic.gravityAngularMomentumEffect = function(element, pointVector) {
+simplePhysic.gravityAngularMomentumEffect = function(element, collideVector) {
     for(let effect of this.activeEffects)
         if(effect == this.effectOfGravity) {
             let centerVector = element.getCenterVector();
             if(true) {
-                let r = this.vector.substract(centerVector, pointVector).x;
-                let dw = new this.vector(0, 0, r * 0.001 * this.G * simplePhysic.REFRESH_PERIOD * 0.001);
-                return {
-                    constrain : pointVector,
-                    dw : dw
-                }
+                let r = this.vector.substract(centerVector, collideVector).x;
+                return dw = new this.vector(0, 0, r * 0.001 * this.G * simplePhysic.REFRESH_PERIOD * 0.001);
             }    
         }
-    return {
-        constrain : element.getCenterVector(),
-        dw : new this.vector(0, 0, 0)
-    }
+    return new this.vector(0, 0, 0);
 }
+*/
