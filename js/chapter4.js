@@ -14,7 +14,7 @@ function chapter4Load() {
     simplePhysic.addCircle(70, 300, 200, "purple");
 
     for(let i of simplePhysic.elements)
-        i.physic.absorbe = 0.5;
+        i.physic.elastic = 0.5;
 
     simplePhysic.addDragToAllElements(simplePhysic.elements);
 

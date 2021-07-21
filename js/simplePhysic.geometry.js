@@ -15,9 +15,10 @@ simplePhysic.geometry = class Geometry{
         w : new simplePhysic.vector(0, 0, 0), //angular velocity [deg/s]
         vConstrain : new simplePhysic.vector(0, 0, 0), //corrective velovity for constrained object[px/s]
         wConstrain : new simplePhysic.vector(0, 0, 0),
+        density : 1,
         mass : 0,
         inertia : 0, // moment of inertia
-        absorbe : 1 // material kinetic energy absorbtion (1 means no absorbtion)
+        elastic : 1 // material kinetic energy absorbtion (1 means no absorbtion)
     };
 
     constructor(width, height, x, y, color) {
