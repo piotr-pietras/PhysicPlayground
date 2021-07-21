@@ -78,12 +78,10 @@ function addMySkills(obj, maxStars){
     //Griding 
     //Interating for columns
     for(let i = 0; i < nR; i++) {
-        $("<div>").appendTo("#about-me__tooltip").html("•"+skillsKeys[i]).css({
-            "margin": "auto",
-            "font-size": "2em",
+        $("<div>").addClass("about-me__rowtitle").appendTo("#about-me__tooltip").html(skillsKeys[i])
+        .css({
             "grid-column" : "1/2",
-            "grid-row" : (i + 1) + "/" + (i + 2),
-            "text-shadow": "0px 0px 4px rgba(255, 255, 255, 1)"});
+            "grid-row" : (i + 1) + "/" + (i + 2)});
         let level = skillsValues[i];
 
         //Interating for rows
@@ -93,7 +91,6 @@ function addMySkills(obj, maxStars){
             else c = "about-me__skills--0";
 
             $("<div>").addClass(c).appendTo("#about-me__tooltip").css({
-                "margin" : "10px",
                 "grid-column" : (j + 2) + "/" + (j + 3),
                 "grid-row" : (i + 1) + "/" + (i + 2)});           
         }

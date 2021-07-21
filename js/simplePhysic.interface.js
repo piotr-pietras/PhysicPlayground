@@ -43,13 +43,14 @@ simplePhysic.addDragToAllElements = function(elements) {
             i.elementHTML.style.cursor = "grab";
         })
 
-        simplePhysic.scene.addEventListener("mouseup", (e) => {
+        this.scene.addEventListener("mouseup", (e) => {
             i.setDragging(false);
             drag = undefined;
         })  
 
-        simplePhysic.scene.addEventListener("mousemove", (e) => {
+        this.scene.addEventListener("mousemove", (e) => {
             if(drag == i.elementHTML) {
+                i.elementHTML.style.cursor = "grabbing";
                 i.setPosition(
                     e.clientX - i.info.width/2, 
                     e.clientY - i.info.height/2, i.info.c);
