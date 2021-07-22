@@ -4,14 +4,11 @@ ballColors = [
 
 function chapter1Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").empty();
+    $("#scene__simplePhysic").empty().unbind();;
 
     $("#scene__simplePhysic").click(function (e) { 
         e.preventDefault();
-        simplePhysic.addCircle(50, 
-            e.clientX - 25, e.clientY - 25, 
-            ballColors[Math.floor(Math.random() * ballColors.length)]
-            );
+        simplePhysic.addRandom(e);
     });
     
     simplePhysic.checkObjectCollision = false;

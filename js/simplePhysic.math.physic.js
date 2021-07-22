@@ -58,35 +58,3 @@ simplePhysic.angularVelocityToLinear = function(element, relativeVector) {
     let r = this.vector.substract(relativeVector, element.getCenterVector());
     return this.vector.cross(element.physic.w, r);
 }
-
-/*
-simplePhysic.angularMomentumGenerating = function(element, v, collideVector) {
-    let r = this.vector.substract(collideVector, element.getCenterVector());
-    let p = this.vector.multiply(v, element.physic.mass);
-    //console.log("-> ", this.vector.magnitude(v));
-    let w = this.vector.multiply(
-        this.vector.cross(r, p), (1/element.physic.inertia));
-    element.physic.w = w;
-}
-*/
-/*
-simplePhysic.constrainRotation = function(element, constrainVector) {
-    let vConstrain = this.vector.cross(
-        this.vector.substract(constrainVector, element.getCenterVector()), 
-        element.physic.w
-        );
-    return vConstrain;
-}
-
-simplePhysic.gravityAngularMomentumEffect = function(element, collideVector) {
-    for(let effect of this.activeEffects)
-        if(effect == this.effectOfGravity) {
-            let centerVector = element.getCenterVector();
-            if(true) {
-                let r = this.vector.substract(centerVector, collideVector).x;
-                return dw = new this.vector(0, 0, r * 0.001 * this.G * simplePhysic.REFRESH_PERIOD * 0.001);
-            }    
-        }
-    return new this.vector(0, 0, 0);
-}
-*/

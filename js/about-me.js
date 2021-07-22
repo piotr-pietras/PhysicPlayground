@@ -38,7 +38,7 @@ function chapterAboutMe() {
             initializeMyButton("#about-me__button--1", mySkills, 4);
             clearInterval(typing);
         }
-    }, 7 /*<- typing speed */);
+    }, 70 /*<- typing speed */);
 
     console.log("-> about me loaded") 
 }

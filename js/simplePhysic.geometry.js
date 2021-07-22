@@ -18,7 +18,7 @@ simplePhysic.geometry = class Geometry{
         density : 1,
         mass : 0,
         inertia : 0, // moment of inertia
-        elastic : 1 // material kinetic energy absorbtion (1 means no absorbtion)
+        elastic : 0.5 // material kinetic energy absorbtion (1 means no absorbtion)
     };
 
     constructor(width, height, x, y, color) {

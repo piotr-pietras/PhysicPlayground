@@ -20,14 +20,13 @@ simplePhysic.clearAll = function () {
    console.log("-> simplePhysic cleared all")
 }
 
+//DOES NOT WORK PROPERLY !!!!
 simplePhysic.addDragToAllElements = function(elements) {
-   let zIndex = 10;
    let drag = undefined;
    for(let i of elements) {
         i.elementHTML.addEventListener("mouseover", (e) => {
             i.elementHTML.style.cursor = "grab";
         })
-
 
         i.elementHTML.addEventListener("mousedown", (e) => {
             i.setDragging(true);
@@ -52,4 +51,25 @@ simplePhysic.addDragToAllElements = function(elements) {
             }
         })
    }
+}
+
+simplePhysic.addRandom = function(clickEvent) {
+    colors = ["red", "yellow", "green", "blue", "purple"];
+
+    if(Math.random() > 1) {
+        let width = 20 + 80 * Math.random();
+        this.addCircle(
+            width, 
+            clickEvent.clientX - width/2, clickEvent.clientY - width/2, 
+            ballColors[Math.floor(Math.random() * ballColors.length)]);
+    }
+
+    else {
+        let width = 20 + 130 * Math.random();
+        let height = 20 + 130 * Math.random();
+        this.addRectangle(
+            width, height, 
+            clickEvent.clientX - width/2, clickEvent.clientY - height/2,  
+            ballColors[Math.floor(Math.random() * ballColors.length)]);
+    }
 }

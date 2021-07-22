@@ -227,21 +227,22 @@ simplePhysic.detectRectangleRectangleCollision = function (element1, element2) {
                 
             if(this.line.intersect2D(line1, line2)){
                 let collideVector = this.line.intersectPoint2D(line1, line2);
-                let d; let n;
+                let d; //Distance vector 
+                let n; //Normal unit
 
-                d = this.line.distanceToPoint2D(line2, line1.p1)
+                d = this.line.distanceToPoint2D(line2, line1.p1); 
                 n = this.vector.unit(this.vector.rotate(line2.v, new this.vector(0,0,0), 90)); 
-                map.push({e : element1, eStatic : element2, n : n, d : d, p : collideVector});
+                map.push({e : element1, eStatic : element2, n : n, d : d, c : collideVector});
                     
                 d = this.line.distanceToPoint2D(line2, line1.p2)
-                map.push({e : element1, eStatic : element2, n : n, d : d, p : collideVector});
+                map.push({e : element1, eStatic : element2, n : n, d : d, c : collideVector});
 
                 d = this.line.distanceToPoint2D(line1, line2.p1)
                 n = this.vector.unit(this.vector.rotate(line1.v, new this.vector(0,0,0), 90)); 
-                map.push({e : element2, eStatic : element1, n : n, d : d, p : collideVector});     
+                map.push({e : element2, eStatic : element1, n : n, d : d, c : collideVector});     
 
                 d = this.line.distanceToPoint2D(line1, line2.p2)
-                map.push({e : element2, eStatic : element1, n : n, d : d,  p : collideVector}); 
+                map.push({e : element2, eStatic : element1, n : n, d : d,  c : collideVector}); 
             }
         }
     }
@@ -279,7 +280,7 @@ simplePhysic.detectRectangleRectangleCollision = function (element1, element2) {
         collide = {
             normalUnit : mapPick.n, 
             distanceVectorCorrected : mapPick.dCorrected,
-            collideVector : mapPick.p,
+            collideVector : mapPick.c,
             element1 : mapPick.e, // normalUnit towards this element
             element2 : mapPick.eStatic // normalUnit outwards this element
         };
@@ -316,42 +317,77 @@ simplePhysic.removeRectangleRectangleCollision = function(collide) {
 simplePhysic.detectRectangleBallCollision = function(element1, element2) {
     let pointsVector = element2.getPointVector();
     let centerVector = element1.getCenterVector();
-    let r = element2.info.width/2;
-    
-    //Side collision
-    for(let i = 0; i < 4; i++) {
-        let l = new this.line(pointsVector[i], pointsVector[(i+1)%4]);
-        let d = this.line.distanceToPoint2D(l, centerVector);
-        //if(this.vector.magnitude(d) > r) continue;
-        let p0 = this.vector.sum(centerVector, this.vector.multiply(d, 1.01));
-        let lCross = new this.line(centerVector, p0);
-        if(this.line.intersect2D(l, lCross)) {
-            let n = this.vector.unit(this.vector.rotate(l.v, new this.vector(0,0,0), 90)); 
-            let dCorrected = this.vector.contrary(this.vector.multiply(n, (this.vector.magnitude(d) - r)* 1.01));
-            return({
-                normalUnit : n,
-                collideVector : p0,
-                distanceVectorCorrected : dCorrected,
-                element1 : element1, // normalUnit towards this element
-                element2 : element2 // normalUnit outwards this element
-            }); 
-        }
+    let r = element1.info.width/2;
+    let d; //Distance vector
+    let n; //Normal unit
+
+    let closest = 0;
+    //Find closest point to center
+    for(let i = 1; i < 4; i++) {
+        if(this.vector.distance(centerVector, pointsVector[closest]) > this.vector.distance(centerVector, pointsVector[i]))
+            closest = i;
     }
-    //Corner collision
-    for(let i = 0; i < 4; i++) {
-        let distance = this.vector.distance(pointsVector[i], centerVector);
-        if(distance < r){
-            let n = this.vector.unit(
-                this.vector.substract(centerVector, pointsVector[i]));
-            let dCorrected = this.vector.contrary(this.vector.multiply(n, (distance - r) * 1.01));
+
+    //Side collision check 1st closest line
+    let line1 = new this.line(pointsVector[closest], pointsVector[(closest+1)%4])
+    n = this.vector.unit(this.vector.rotate(line1.v, new this.vector(0,0,0), 90));
+    d = this.line.distanceToPoint2D(line1, centerVector);
+    if(this.vector.magnitude(d) <= r) {
+        let collideVector = this.vector.sum(centerVector, this.vector.contrary(d));
+        let lineCross = new this.line(collideVector, centerVector);
+        if(this.line.intersect2D(line1, lineCross)) {
+            let dCorrected = this.vector.sum(
+                this.vector.contrary(d),
+                this.vector.multiply(n, r * 1.01));
+
             return({
                 normalUnit : n,
-                collideVector : pointsVector[i],
+                collideVector : collideVector,
                 distanceVectorCorrected : dCorrected,
                 element1 : element1, // normalUnit towards this element
                 element2 : element2 // normalUnit outwards this element
             });
         }
+    }
+
+    //Side collision check 2nst closest line
+    let cor = 0;
+    if(closest == 0) cor = 4;
+    let line2 = new this.line(pointsVector[(closest-1)+cor], pointsVector[closest])
+    n = this.vector.unit(this.vector.rotate(line2.v, new this.vector(0,0,0), 90));
+    d = this.line.distanceToPoint2D(line2, centerVector);
+    if(this.vector.magnitude(d) <= r) {
+        let collideVector = this.vector.sum(centerVector, this.vector.contrary(d));
+        let lineCross = new this.line(collideVector, centerVector);
+        if(this.line.intersect2D(line2, lineCross)) {
+            let dCorrected = this.vector.sum(
+                this.vector.contrary(d),
+                this.vector.multiply(n, r * 1.01));
+
+            return({
+                normalUnit : n,
+                collideVector : collideVector,
+                distanceVectorCorrected : dCorrected,
+                element1 : element1, // normalUnit towards this element
+                element2 : element2 // normalUnit outwards this element
+            });
+        }
+    }
+
+    //Corner collision
+    d = this.vector.substract(centerVector, pointsVector[closest]);
+    if(this.vector.magnitude(d) <= r){
+        n = this.vector.unit(d);
+        let dCorrected = this.vector.sum(
+            this.vector.contrary(d),
+            this.vector.multiply(n, r * 1.01));
+        return({
+            normalUnit : n,
+            collideVector : pointsVector[closest],
+            distanceVectorCorrected : dCorrected,
+            element1 : element1, // normalUnit towards this element
+            element2 : element2 // normalUnit outwards this element
+        });
     }
 }
 //---------------------------Affect-------------------------------------

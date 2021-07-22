@@ -1,19 +1,22 @@
 function chapter3Load() {
     simplePhysic.clearAll();
-    $("#scene__simplePhysic").empty();
+    $("#scene__simplePhysic").empty().unbind();
 
-    simplePhysic.addCircle(80, 50, 50, "blue");
-    simplePhysic.elements[0].physic.v = new simplePhysic.vector(25,-50,0);
-    simplePhysic.addCircle(40, 350, 50, "red");
-    simplePhysic.elements[1].physic.v = new simplePhysic.vector(-25,0,0);
-    simplePhysic.addCircle(40, 350, 300, "yellow");
-    simplePhysic.elements[2].physic.v = new simplePhysic.vector(0,-55,0);
-    simplePhysic.addCircle(40, 500, 100, "green");
-    simplePhysic.elements[3].physic.v = new simplePhysic.vector(-55,30,0);
-    simplePhysic.addCircle(70, 300, 400, "purple");
-    simplePhysic.elements[4].physic.v = new simplePhysic.vector(5,-80,0);
+    $("#scene__simplePhysic").click(function (e) { 
+        e.preventDefault();
+        simplePhysic.addRandom(e);
+    });
 
-    
+    //simplePhysic.addRectangle(100, 100, 100, 100, "blue");
+    //simplePhysic.elements[0].info.c = Math.PI/5;
+    //simplePhysic.addRectangle(50, 50, 300, 100, "red");
+    //simplePhysic.addCircle(100, 100, 50, "purple");
+
+    simplePhysic.addDragToAllElements(simplePhysic.elements);
+
+    for(let i of simplePhysic.elements)
+        i.physic.elastic = 0.5;
+
     simplePhysic.checkFrameCollision = true;
     simplePhysic.checkObjectCollision = true;
     simplePhysic.activeEffects.push(simplePhysic.effectOfGravity); 
