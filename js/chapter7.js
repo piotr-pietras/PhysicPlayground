@@ -8,6 +8,7 @@ function chapter7Load() {
     simplePhysic.addRectangle(50, 50, 300, 100, "red");
     //implePhysic.elements[0].physic.w = new simplePhysic.vector(0,0,1);    
     //simplePhysic.addRectangle(100, 50, 200, 100, "green");
+    simplePhysic.addCircle(100, 100, 50, "purple");
 
     simplePhysic.addDragToAllElements(simplePhysic.elements);
 

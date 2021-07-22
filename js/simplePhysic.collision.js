@@ -33,6 +33,24 @@ simplePhysic.detectCollision = function(element1, element2) {
             this.removeRectangleFrameCollision(element1, collide);            
         }
     }
+
+    //Rectangle-Ball collision 
+    else if(element1 instanceof this.rectangle && element2 instanceof this.circle) {
+        let collide = this.detectRectangleBallCollision(element2, element1);
+        if(collide) {
+            this.affectRectangleBallCollision(collide);
+            this.removeRectangleBallCollision(collide);
+        }
+    }
+
+    //Ball-Rectable collision 
+    else if(element1 instanceof this.circle && element2 instanceof this.rectangle) {
+        let collide = this.detectRectangleBallCollision(element1, element2);
+        if(collide) {
+            this.affectRectangleBallCollision(collide);
+            this.removeRectangleBallCollision(collide);
+        }        
+    }
 }
 
 //----------------------------------------------------------------
@@ -212,14 +230,14 @@ simplePhysic.detectRectangleRectangleCollision = function (element1, element2) {
                 let d; let n;
 
                 d = this.line.distanceToPoint2D(line2, line1.p1)
-                n = this.vector.unit(this.vector.rotate(line2.v, new simplePhysic.vector(0,0,0), 90)); 
+                n = this.vector.unit(this.vector.rotate(line2.v, new this.vector(0,0,0), 90)); 
                 map.push({e : element1, eStatic : element2, n : n, d : d, p : collideVector});
                     
                 d = this.line.distanceToPoint2D(line2, line1.p2)
                 map.push({e : element1, eStatic : element2, n : n, d : d, p : collideVector});
 
                 d = this.line.distanceToPoint2D(line1, line2.p1)
-                n = this.vector.unit(this.vector.rotate(line1.v, new simplePhysic.vector(0,0,0), 90)); 
+                n = this.vector.unit(this.vector.rotate(line1.v, new this.vector(0,0,0), 90)); 
                 map.push({e : element2, eStatic : element1, n : n, d : d, p : collideVector});     
 
                 d = this.line.distanceToPoint2D(line1, line2.p2)
@@ -243,7 +261,7 @@ simplePhysic.detectRectangleRectangleCollision = function (element1, element2) {
         for(let i = 0; i < 4; i++) {
             let intersected = false;
             //Moves line 
-            pick.dCorrected = this.vector.multiply(this.vector.assimilate(pick.d, pick.n), 1.05)
+            pick.dCorrected = this.vector.multiply(this.vector.assimilate(pick.d, pick.n), 1.01)
             let line1 = this.line.moveBy(new this.line(pointsVector1[i], pointsVector1[(i+1)%4]), pick.dCorrected);
             //Checks if intersect
             for(let j = 0; j < 4; j++) {
@@ -282,6 +300,74 @@ simplePhysic.affectRectangleRectangleCollision = function (collide) {
 }
 //---------------------------Remove-------------------------------------
 simplePhysic.removeRectangleRectangleCollision = function(collide) {
+    let element1 = collide.element1;
+    let element2 = collide.element2;
+
+    let moveByVector1 = this.vector.multiply(collide.distanceVectorCorrected, 0.5);
+    let moveByVector2 = this.vector.contrary(moveByVector1);
+
+    element1.setPosition(element1.info.x + moveByVector1.x, element1.info.y + moveByVector1.y, element1.info.c);
+    element2.setPosition(element2.info.x + moveByVector2.x, element2.info.y + moveByVector2.y, element2.info.c);
+}
+//----------------------------------------------------------------
+//RECTANGLE-BALL COLLISION
+//----------------------------------------------------------------
+//---------------------------Detect-------------------------------------
+simplePhysic.detectRectangleBallCollision = function(element1, element2) {
+    let pointsVector = element2.getPointVector();
+    let centerVector = element1.getCenterVector();
+    let r = element2.info.width/2;
+    
+    //Side collision
+    for(let i = 0; i < 4; i++) {
+        let l = new this.line(pointsVector[i], pointsVector[(i+1)%4]);
+        let d = this.line.distanceToPoint2D(l, centerVector);
+        //if(this.vector.magnitude(d) > r) continue;
+        let p0 = this.vector.sum(centerVector, this.vector.multiply(d, 1.01));
+        let lCross = new this.line(centerVector, p0);
+        if(this.line.intersect2D(l, lCross)) {
+            let n = this.vector.unit(this.vector.rotate(l.v, new this.vector(0,0,0), 90)); 
+            let dCorrected = this.vector.contrary(this.vector.multiply(n, (this.vector.magnitude(d) - r)* 1.01));
+            return({
+                normalUnit : n,
+                collideVector : p0,
+                distanceVectorCorrected : dCorrected,
+                element1 : element1, // normalUnit towards this element
+                element2 : element2 // normalUnit outwards this element
+            }); 
+        }
+    }
+    //Corner collision
+    for(let i = 0; i < 4; i++) {
+        let distance = this.vector.distance(pointsVector[i], centerVector);
+        if(distance < r){
+            let n = this.vector.unit(
+                this.vector.substract(centerVector, pointsVector[i]));
+            let dCorrected = this.vector.contrary(this.vector.multiply(n, (distance - r) * 1.01));
+            return({
+                normalUnit : n,
+                collideVector : pointsVector[i],
+                distanceVectorCorrected : dCorrected,
+                element1 : element1, // normalUnit towards this element
+                element2 : element2 // normalUnit outwards this element
+            });
+        }
+    }
+}
+//---------------------------Affect-------------------------------------
+simplePhysic.affectRectangleBallCollision = function(collide) {
+    let element1 = collide.element1;
+    let element2 = collide.element2;
+
+    let j = this.collisionImpulse(element1, element2, collide.collideVector, collide.normalUnit);
+    element1.physic.v = this.linearImpulseAffect(j, element1, collide.normalUnit);
+    element1.physic.w = this.angularImpulseAffect(j, element1, collide.normalUnit, collide.collideVector);
+    let normalUnitContrary = this.vector.contrary(collide.normalUnit);
+    element2.physic.v = this.linearImpulseAffect(j, element2, normalUnitContrary);
+    element2.physic.w = this.angularImpulseAffect(j, element2, normalUnitContrary, collide.collideVector);
+}
+//---------------------------Remove-------------------------------------
+simplePhysic.removeRectangleBallCollision = function(collide) {
     let element1 = collide.element1;
     let element2 = collide.element2;
 

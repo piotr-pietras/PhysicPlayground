@@ -24,23 +24,19 @@ simplePhysic.addDragToAllElements = function(elements) {
    let zIndex = 10;
    let drag = undefined;
    for(let i of elements) {
-        i.elementHTML.addEventListener("mouseenter", (e) => {
+        i.elementHTML.addEventListener("mouseover", (e) => {
             i.elementHTML.style.cursor = "grab";
         })
 
+
         i.elementHTML.addEventListener("mousedown", (e) => {
-            if(!drag) {
-                i.setDragging(true);
-                drag = i.elementHTML; 
-                i.elementHTML.style.zIndex = ++zIndex;
-                i.elementHTML.style.cursor = "grabbing";
-            }
+            i.setDragging(true);
+            drag = i.elementHTML; 
         })
        
         i.elementHTML.addEventListener("mouseup", (e) => {
             i.setDragging(false);
             drag = undefined;
-            i.elementHTML.style.cursor = "grab";
         })
 
         this.scene.addEventListener("mouseup", (e) => {
@@ -50,7 +46,6 @@ simplePhysic.addDragToAllElements = function(elements) {
 
         this.scene.addEventListener("mousemove", (e) => {
             if(drag == i.elementHTML) {
-                i.elementHTML.style.cursor = "grabbing";
                 i.setPosition(
                     e.clientX - i.info.width/2, 
                     e.clientY - i.info.height/2, i.info.c);

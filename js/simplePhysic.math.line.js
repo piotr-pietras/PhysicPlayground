@@ -37,6 +37,8 @@ simplePhysic.line = class Line {
         return new simplePhysic.vector(x, y, 0);
     }
 
+    //Returns perpendicular vector to line from point
+    //Vector's arrow pointing line
     static distanceToPoint2D(line, point) {
         let n = simplePhysic.vector.unit(line.v);
         let s = simplePhysic.vector.substract(point, line.p1);
