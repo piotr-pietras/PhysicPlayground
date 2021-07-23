@@ -41,29 +41,5 @@ $(document).ready(function () {
         chapter3Load();
         currentlyLoadedChapter = chapter3Load;
     });
-
-    $("#menu__option--4").click(function (e) { 
-        console.log("-> chapter 4 choosen")
-        chapter4Load();
-        currentlyLoadedChapter = chapter4Load;
-    });
-
-    $("#menu__option--5").click(function (e) { 
-        console.log("-> chapter 5 choosen")
-        chapter5Load();
-        currentlyLoadedChapter = chapter5Load;
-    });
-
-    $("#menu__option--6").click(function (e) { 
-        console.log("-> chapter 6 choosen")
-        chapter6Load();
-        currentlyLoadedChapter = chapter6Load;
-    });
-
-    $("#menu__option--7").click(function (e) { 
-        console.log("-> chapter 7 choosen")
-        chapter7Load();
-        currentlyLoadedChapter = chapter7Load;
-    });
 });
 

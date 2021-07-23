@@ -6,6 +6,9 @@ function showScene() {
 }
 
 function hideScene() {
+    simplePhysic.clearAll();
+    $("#scene__simplePhysic").empty().unbind();
+    currentlyLoadedChapter = undefined;
     console.log("-> hide scene");
     $(".scene").css({
         "transform" : "translateY(-100%)"});

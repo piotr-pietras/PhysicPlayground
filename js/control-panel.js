@@ -7,7 +7,9 @@ $(document).ready(function () {
     });
 
     $("#control-panel__restart").click(function (e) { 
-        currentlyLoadedChapter();
+        simplePhysic.clearAll();
+        $("#scene__simplePhysic").empty().unbind();
+        currentlyLoadedChapter();       
     });
 });
 

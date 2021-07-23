@@ -54,14 +54,14 @@ simplePhysic.addDragToAllElements = function(elements) {
 }
 
 simplePhysic.addRandom = function(clickEvent) {
-    colors = ["red", "yellow", "green", "blue", "purple"];
+    let colors = ["red", "yellow", "green", "blue", "purple"];
 
-    if(Math.random() > 1) {
+    if(Math.random() > 0.5) {
         let width = 20 + 80 * Math.random();
         this.addCircle(
             width, 
             clickEvent.clientX - width/2, clickEvent.clientY - width/2, 
-            ballColors[Math.floor(Math.random() * ballColors.length)]);
+            colors[Math.floor(Math.random() * colors.length)]);
     }
 
     else {
@@ -70,6 +70,6 @@ simplePhysic.addRandom = function(clickEvent) {
         this.addRectangle(
             width, height, 
             clickEvent.clientX - width/2, clickEvent.clientY - height/2,  
-            ballColors[Math.floor(Math.random() * ballColors.length)]);
+            colors[Math.floor(Math.random() * colors.length)]);
     }
 }

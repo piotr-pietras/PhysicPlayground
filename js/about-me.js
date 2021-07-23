@@ -11,7 +11,10 @@ $(document).ready(function () {
 
 //-----------------------About me DATA-----------------------------------------
 aboutMeText = "<h3>Hello!!! :)</h3>" 
-    + "<p>My name is Petero, and as a total begginer in programing I am pleased to intreduce my first library project.</p>";
+    + "<p>My name is Petero and as a total begginer in programing I am pleased to intreduce 'simplePhysic' my first library project to simulate shape's physic. " 
+    + "I haven't used any external library and since beginning it's basically plain js code.</p>"
+    + "<p>I encourage to visit my GitHub repository (button below)</p>"
+    + "<p>Have fun on playground :)</p>";
 
 mySkills = {
     html : 1,
@@ -22,9 +25,7 @@ mySkills = {
 
 //-----------------------Chapter load-----------------------------------------
 function chapterAboutMe() {
-    simplePhysic.clearAll();
-    $("#scene__simplePhysic").empty();
-
+    $("#scene__tip").html("");
     $("<div>").attr("id", "about-me__textarea").appendTo("#scene__simplePhysic");
     //Typing thread
     let i = 1;
@@ -32,22 +33,31 @@ function chapterAboutMe() {
         $("#about-me__textarea").html(aboutMeText.substring(0,i) + "  |");
         i++;
         
+        //Aborte type when scene hid
+        if(!currentlyLoadedChapter) clearInterval(typing);
+
+        //Add button at end of typing
         if(i >= aboutMeText.length) {
             $("about-me__textarea").text(aboutMeText);
             $("<button>").attr("id", "about-me__button--1").html("Show my skills").appendTo("#scene__simplePhysic");
-            initializeMyButton("#about-me__button--1", mySkills, 4);
+            initializeMyButton("#about-me__button--1", () => {return addMySkills(mySkills, 4)});
+            $("<button>").attr("id", "about-me__button--2").html("GitHub repository").appendTo("#scene__simplePhysic")
+                .click(() => {window.location = "https://github.com/peterooo94/PhysicPlayground"});
             clearInterval(typing);
         }
-    }, 70 /*<- typing speed */);
+    }, 60 /*<- typing speed */);
 
     console.log("-> about me loaded") 
 }
 
+//----------------------------------------------------------------
+//MyButton
+//----------------------------------------------------------------
 //Inintialize button that shows grided tooltip with evaluations
-function initializeMyButton(id, object, stars){
+function initializeMyButton(id, fun){
     $(id).click(function (e) {  
         $("#about-me__tooltip").css({display: "grid",}); 
-        addMySkills(object, stars); 
+        fun();
     });
 
     $(id).mousemove(function (e) {  
@@ -58,7 +68,7 @@ function initializeMyButton(id, object, stars){
     });
 
     $(id).mouseout(function (e) {  
-        $("#about-me__tooltip").css({display: "none"});       
+        $("#about-me__tooltip").css({display: "none"}).empty();       
     });
 }
 
@@ -78,7 +88,7 @@ function addMySkills(obj, maxStars){
     //Griding 
     //Interating for columns
     for(let i = 0; i < nR; i++) {
-        $("<div>").addClass("about-me__rowtitle").appendTo("#about-me__tooltip").html(skillsKeys[i])
+        $("<h1>").addClass("about-me__rowtitle").appendTo("#about-me__tooltip").html(skillsKeys[i])
         .css({
             "grid-column" : "1/2",
             "grid-row" : (i + 1) + "/" + (i + 2)});

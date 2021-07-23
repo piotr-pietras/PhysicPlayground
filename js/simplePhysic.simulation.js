@@ -1,4 +1,4 @@
-simplePhysic.REFRESH_PERIOD = 200; //[ms]
+simplePhysic.REFRESH_PERIOD = 40; //[ms]
 simplePhysic.simulateInterval = null;
 simplePhysic.checkObjectCollision = true;
 simplePhysic.checkFrameCollision = true;
