@@ -64,9 +64,14 @@
 }
 
 [id^="menu__option"] {
+    display: flex;
     width: 20%;
     height: 20%;
     margin: 3%;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2em;
 
     border-radius: 10%;
     background-color: rgb(146, 146, 146);
@@ -76,9 +81,9 @@
     transition: 0.5s;
 }    
 
-[id^="menu__option"]:hover {
+[id^="menu__option"]:hover{
     margin: 5%;
-    border: 0.1em solid rgba(0, 0, 0, 1);
+    border: 0.1em solid rgb(85, 85, 85);
     cursor: pointer;
     transform: scale(1.25) rotateZ(15deg);
     opacity: 0.9;
