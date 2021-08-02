@@ -42,10 +42,12 @@ function chapterAboutMe() {
             $("<button>").attr("id", "about-me__button--1").html("Show my skills").appendTo("#scene__simplePhysic");
             initializeMyButton("#about-me__button--1", () => {return addMySkills(mySkills, 4)});
             $("<button>").attr("id", "about-me__button--2").html("GitHub repository").appendTo("#scene__simplePhysic")
-                .click(() => {window.location = "https://github.com/peterooo94/PhysicPlayground"});
+                .click(() => {window.open("https://github.com/peterooo94/PhysicPlayground", "GitHub")});
+            $("<button>").attr("id", "about-me__button--3").html("Library DOC").appendTo("#scene__simplePhysic")
+                .click(() => {window.open("http://www.peterooo94.online/doc/doc.pdf", "Library DOC")});
             clearInterval(typing);
         }
-    }, 60 /*<- typing speed */);
+    }, 45 /*<- typing speed */);
 
     console.log("-> about me loaded") 
 }
@@ -62,7 +64,7 @@ function initializeMyButton(id, fun){
 
     $(id).mousemove(function (e) {  
         $("#about-me__tooltip").css({
-            "top" : e.clientY + -100 + "px",
+            "top" : e.clientY + -220 + "px",
             "left" : e.clientX + 40 + "px"
         });       
     });
